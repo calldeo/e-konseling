@@ -3,12 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\PenangananController;
+
+use App\Http\Controllers\KetpelanggaranController;
+use App\Http\Controllers\KetpenghargaanController;
+use App\Http\Controllers\KetriwayatController;
+use App\Http\Controllers\KetpenangananController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +43,10 @@ route::get('/riwayat',[RiwayatController::class,'riwayat'])->name('riwayat');
 route::get('/penanganan',[PenangananController::class,'penanganan'])->name('penanganan');
 
 
+route::get('/ketpelanggaran',[KetpelanggaranController::class,'ketpelanggaran'])->name('ketpelanggaran');
+route::get('/ketpenghargaan',[KetpenghargaanController::class,'ketpenghargaan'])->name('ketpenghargaan');
+route::get('/ketriwayat',[KetriwayatController::class,'ketriwayat'])->name('ketriwayat');
+route::get('/ketpenanganan',[KetpenangananController::class,'ketpenanganan'])->name('ketpenanganan');
 
 Route::group(['middleware' => ['auth']], function (){
     route::get('/home',[HomeController::class,'index'])->name('home');
