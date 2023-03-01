@@ -2,30 +2,31 @@
     <div class="h-full flex items-center">
         <!-- BEGIN: Logo -->
         <a href="" class="-intro-x hidden md:flex">
-            <img alt="Midone - HTML Admin Template" class="w-12" src="{{asset('dashboards/dist/images/logobeka.png')}}">
+            <img alt="Midone - HTML Admin Template" class="w-6" src="{{asset('dashboards/dist/images/logobeka.png')}}">
             <span class="text-white text-lg ml-3"> Si Beka </span> 
         </a>
         <!-- END: Logo -->
         <!-- BEGIN: Breadcrumb -->
         <nav aria-label="breadcrumb" class="-intro-x h-full mr-auto">
-            <ol class="breadcrumb breadcrumb-light">
-               
-                
-            </ol>
+           
         </nav>
         <!-- END: Breadcrumb -->
-       
-       
+        <!-- BEGIN: Search -->
+        
+        <!-- END: Search -->
+        <!-- BEGIN: Notifications -->
+      
+        <!-- END: Notifications -->
         <!-- BEGIN: Account Menu -->
         <div class="intro-x dropdown w-8 h-8">
             <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110" role="button" aria-expanded="false" data-tw-toggle="dropdown">
-                <img alt="Midone - HTML Admin Template" src="{{asset('dashboards/dist/images/profile-9.jpg')}}">
+                <img alt="Midone - HTML Admin Template" src="{{asset('dashboards/dist/images/profile-2.jpg')}}">
             </div>
             <div class="dropdown-menu w-56">
                 <ul class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
                     <li class="p-2">
-                        <div class="font-medium">Al Pacino</div>
-                        <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">Software Engineer</div>
+                        <div class="font-medium">Johnny Depp</div>
+                        <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">DevOps Engineer</div>
                     </li>
                     <li>
                         <hr class="dropdown-divider border-white/[0.08]">
@@ -33,9 +34,7 @@
                     <li>
                         <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile </a>
                     </li>
-                    <li>
-                        <hr class="dropdown-divider border-white/[0.08]">
-                    </li>
+                   
                     <li>
                         <a href="/" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
                     </li>
