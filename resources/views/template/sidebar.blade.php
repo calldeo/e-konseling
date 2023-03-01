@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html" class="side-menu">
+                    <a href="ketpelanggaran" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                         <div class="side-menu__title"> Kategori Pelanggaran</div>
                     </a>
@@ -69,7 +69,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html" class="side-menu">
+                    <a href="/ketpenghargaan" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="side-menu__title"> Kategori Penghargaan</div>
                     </a>
@@ -93,7 +93,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html" class="side-menu">
+                    <a href="/ketriwayat" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="history"></i> </div>
                         <div class="side-menu__title"> Kategori Riwayat</div>
                     </a>
@@ -117,7 +117,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html" class="side-menu">
+                    <a href="ketpenanganan" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="save"></i> </div>
                         <div class="side-menu__title"> Kategori Penanganan</div>
                     </a>
