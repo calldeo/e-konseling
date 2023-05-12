@@ -9,8 +9,7 @@
                 </div>
             </a>
         </li>
-
-
+      
         <li>
             <a href="/siswa" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="user"></i> </div>
@@ -20,6 +19,7 @@
                 </div>
             </a>
         </li>
+   
 
         <li>
             <a href="/guru" class="side-menu">
@@ -30,7 +30,7 @@
                 </div>
             </a>
         </li>
-
+       
 
 
         <li>
