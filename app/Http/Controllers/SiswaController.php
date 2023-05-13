@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\SiswaAPImodel;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use lluminate\Database\Eloquent\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpParser\Node\Expr;
@@ -120,5 +121,33 @@ class SiswaController extends Controller
             return ApiFormatter::createApi(400, 'Gagal');
         }    }
 
+
+        public function loginapi(Request $request)
+        {
+            $credentials = $request->only('email', 'password');
+    
+            if (Auth::guard('siswa')->attempt($credentials)) {
+                $auth = Auth::guard('siswa')->user();
+                $auth['token']=$auth->createToken('auth_token')->plainTextToken;
+    
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Login berhasil' ,
+                    'data' => $auth
+                ]);
+            } else {
+                return response()->json([
+                   
+                    'success' => false,
+                    'message' => 'Email atau password salah',
+                    'data' => null
+                    
+                ]);
+            }
+        }
+    }
+
+        
+
   
-}
+

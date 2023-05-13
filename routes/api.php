@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,20 +23,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();  
 });
 route::get('siswa',[SiswaController::class,'SiswaAPI']);
+route::post('login',[SiswaController::class,'loginapi']);
 
-route::post('siswa',function(Request $request){
-    $valid = Auth::attempt($request->all());
+// route::post('siswa',function(Request $request){
+//     $valid = Auth::attempt($request->all());
 
-    if($valid){
-        $siswa = Auth::Siswa();
-        $siswa->api_token = Str::random(100);
-        $siswa->save();
+//     if($valid){
+//         $siswa = Auth::Siswa();
+//         $siswa->api_token = Str::random(100);
+//         $siswa->save();
 
-        // $user->makeVisible('api_token');
+//         // $user->makeVisible('api_token');
 
-        return $siswa;
-    }
-    return response()->json([
-        'message'=> 'email & password doesn\'t match'
-    ],404);
-});
+//         return $siswa;
+//     }
+//     return response()->json([
+//         'message'=> 'email & password doesn\'t match'
+//     ],404);
+// });
