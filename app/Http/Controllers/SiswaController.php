@@ -11,7 +11,10 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\SiswaAPImodel;
 use Exception;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
+=======
+>>>>>>> 5320b8a665490443f655e8a1ff560dfa47e9a309
 use lluminate\Database\Eloquent\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpParser\Node\Expr;
@@ -121,6 +124,7 @@ class SiswaController extends Controller
             return ApiFormatter::createApi(400, 'Gagal');
         }    }
 
+<<<<<<< HEAD
 
         public function loginapi(Request $request)
         {
@@ -151,3 +155,7 @@ class SiswaController extends Controller
 
   
 
+=======
+  
+}
+>>>>>>> 5320b8a665490443f655e8a1ff560dfa47e9a309
