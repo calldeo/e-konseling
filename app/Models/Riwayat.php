@@ -30,11 +30,13 @@ class Riwayat extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id_kategori_riwayat',
+        'id_riwayat',
+        
         'id_siswa',
+        'id_kategori_riwayat',
         'id',
-        'point',
-        'catatan',
+        'judul_riwayat',
+        'catatan_riwayat',
         
     ];
 

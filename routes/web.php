@@ -78,6 +78,14 @@ Route::delete('/penghargaan/{id_penghargaan}',[PenghargaanController::class,'des
 Route::get('/penghargaan/{id_penghargaan}/edit_penghargaan',[PenghargaanController::class,'editphg']);
 Route::put('/penghargaan/{id_penghargaan}',[PenghargaanController::class,'updatephg']);
 
+
+
+route::get('/tambah_riwayat',[RiwayatController::class,'tambahrwt'])->name('tambahrwt');
+Route::post('/rwt/storerwt',[RiwayatController::class,'storerwt']);
+Route::delete('/riwayat/{id_riwayat}',[RiwayatController::class,'destroy1'])->name('destroy1');
+Route::get('/riwayat/{id_riwayat}/edit_riwayat',[RiwayatController::class,'editrwt']);
+Route::put('/riwayat/{id_riwayat}',[RiwayatController::class,'updaterwt']);
+
 // route::get('/view',[PelanggaranController::class,'view'])->name('view');
 
 
@@ -118,14 +126,4 @@ Route::put('/siswa/{id_siswa}',[SiswaController::class,'update']);
 route::get('/siswa/search',[SiswaController::class,'search'])->name('search');
 route::get('/guru/search',[GuruController::class,'search'])->name('search');
 route::get('/siswa/viewimport',[SiswaController::class,'viewimport'])->name('viewimport');
-
-
-
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 5320b8a665490443f655e8a1ff560dfa47e9a309
 

@@ -109,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="dropdown-menu w-40">
                                     <ul class="dropdown-content">
                                         <li>
-                                            <a href="/tambah_plg" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Pelanggaran </a>
+                                            <a href="/tambah_riwayat" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Pelanggaran </a>
                                         </li>
                                         <li>
                                             <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
@@ -145,18 +145,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </thead>
                                 <tbody>
                                     @foreach($data as $da)
-                                    <td  class="text-center">{{$da->id_pelanggaran}}</td>
-                                    <td class="text-center">{{$da->siswa->nama}}</td>
-                                    <td  class="text-center">{{$da->ketpelanggaran->kategori_pelanggaran}}</td>
+                                    <td  class="text-center">{{$da->id_riwayat}}</td>
+                                    <td class="text-center">{{$da->siswa?->nama}}</td>
+                                    <td  class="text-center">{{$da->ketriwayat->kategori_riwayat}}</td>
                                     <td class="text-center">{{$da->user->name}}</td>
-                                    <td class="text-center">{{$da->point}}</td>
-                                    <td class="text-center">{{$da->catatan}}</td>
+                                    <td class="text-center">{{$da->judul_riwayat}}</td>
+                                    <td class="text-center">{{$da->catatan_riwayat}}</td>
                                     
                                     {{-- <td class="text-center">{{$g->password}}</td> --}}
 
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center">
-                                            <a class="flex items-center mr-3" href="/pelanggaran/{{ $da->id_pelanggaran }}/edit_pelanggaran"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                            <a class="flex items-center mr-3" href="/riwayat/{{ $da->id_riwayat }}/edit_riwayat"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
 
                                             <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                         </div>
@@ -218,7 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                     <div class="px-5 pb-8 text-center">
-                                        <form action="/pelanggaran/{{ $ket1->id_pelanggaran }}" method="POST">
+                                        <form action="/riwayat/{{ $ket1->id_riwayat }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>

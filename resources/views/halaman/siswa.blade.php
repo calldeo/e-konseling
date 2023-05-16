@@ -186,9 +186,9 @@ License: You must have a valid license purchased only from themeforest(the above
                    
                     
                     <!-- BEGIN: Delete Confirmation Modal -->
-                    @foreach ($siswa as $ss)
+                  
                         
-                    
+                    @foreach($siswa as $ss)
                     <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -216,7 +216,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             
                         </div>
                     </div>
-                    @endforeach
+                  @endforeach
                     
                     <div id="delete-confirmation-modal1" class="modal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">

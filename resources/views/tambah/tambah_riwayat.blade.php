@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Siswa - Si Beka</title>
+    <title>Guru - Si Beka</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('dashboards/dist/css/app.css')}}" />
     <head>
@@ -95,67 +95,81 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="content">
                     <div class="intro-y flex items-center mt-8">
                         <h2 class="text-lg font-medium mr-auto">
-                            Tambah Siswa
+                            Tambah Riwayat
                         </h2>
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <div class="intro-y col-span-12 lg:col-span-12">
                             <!-- BEGIN: Form Layout -->
-                            <form action="/siswa/store" method="POST" enctype="multipart/form-data">
+                            <form action="/riwayat/storerwt" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="mb-5">
-                                    <label for="name" class="form-label">NISN</label>
-                                    <input type="number" name="nisn" id="nisn" class="form-control"   required>
-                                </div>
-                                <div class="mb-5">
-                                    <label for="name" class="form-label">Nama</label>
-                                    <input type="text" name="nama"  id="nama" class="form-control" min="6" max="10" onkeyup="lettersOnly(this)"  required>
-                                </div>
+                               
                                 <div  class="mb-5">
-                                    <label for="name" class="form-label">Kelas</label>
+                                    <label for="name" class="form-label">Nama Siswa</label>
                                     <div  >
-                                        <select class="tom-select w-full" name="kelas" required>
-                                            <option  value="">--PILIH KELAS--</option>
-                                            <option  value="X KI1">X BFI</option>
-                                            <option  value="X KI1">X DKV1</option>
-                                            <option  value="X KI1">X DKV2</option>
-                                            <option  value="X KI1">X PG</option>
-                                            <option  value="X KI1">X DKV</option>
-                                            <option  value="X KI1">X KI1</option>
-                                            <option  value="X KI2">X KI2</option>
-                                            <option  value="X MM1">X MM1</option>
-                                            <option  value="X MM2">X MM2</option>
-                                            <option  value="X MM3">X MM3</option>
-                                            <option  value="X RPL1">X RPL1</option>
-                                            <option  value="X RPL2">X RPL2</option>
-                                            <option  value="XI KI1">XI KI1</option>
-                                            <option  value="XI KI2">XI KI2</option>
-                                            <option  value="XI MM1">XI MM1</option>
-                                            <option  value="XI MM2">XI MM2</option>
-                                            <option  value="XI MM3">XI MM3</option>
-                                            <option  value="XI RPL1">XI RPL1</option>
-                                            <option  value="XI RPL2">XI RPL2</option>
-                                            <option  value="XII KI1">XII KI1</option>
-                                            <option  value="XII KI2">XII KI2</option>
-                                            <option  value="XII MM1">XII MM1</option>
-                                            <option  value="XII MM2">XII MM2</option>
-                                            <option  value="XII MM3">XII MM3</option>
-                                            <option  value="XII RPL1">XII RPL1</option>
-                                            <option  value="XII RPL2">XII RPL2</option>
+                                        <select class="tom-select w-full" name="id_siswa" required>
+                                            @foreach ($siswa as $ket)
+                                            <option  value="">--PILIH SISWA--</option>
+                                            <option value="{{ $ket->id_siswa }}">{{ $ket->nama }}</option>
                                             
+                                        @endforeach
                                         </select >
                                     </div>
-                                </div>    
-                                  <div class="mb-5">
-                                    <label for="email" class="form-label">E mail</label>
-                                    <input type="email" name="email" class="form-control"  required>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control"   required>
-                                  </div> 
+                                </div>
+                                <div  class="mb-5">
+                                    <label for="id_kategori_riwayat" class="form-label">Riwayat</label>
+                                    
+                                    <div  >
+                                        {{-- <option value="">Pilih Kategori Pelanggaran</option> --}}
+                                        <select class="tom-select w-full"  onchange="getPoint(this)" name="id_kategori_riwayat" required>
+                                            {{-- <option value="">Pilih Kategori Pelanggaran</option> --}}
+                                            @foreach ($riwayat as $rwt)
+                                            <option value="{{ $rwt->id_kategori_riwayat}}">{{ $rwt->nama_kategori_riwayat}}</option>
+                                            
+                                        @endforeach
+                                        </select >
+                                    </div>
+                                </div>
+                                @error('id_kategori_riwayat')
+                                        <p>{{$message}}</p>
+                                    @enderror
+                                <div  class="mb-5">
+                                    <label for="name" class="form-label">Nama Guru</label>
+                                    <div  >
+                                        <select class="tom-select w-full" name="id" required>
+                                            @foreach ($guru as $item)
+                                            <option value="{{ $item->id}}">{{ $item->name }}</option>
+                                            
+                                        @endforeach
+                                        </select >
+                                    </div>
+                                    @error('id')
+                                        <p>{{$message}}</p>
+                                    @enderror
+                                </div>
+                                <div class="mb-5">
+                                    <label for="point" class="form-label">Judul</label>
+                                    <input type="text" name="judul_riwayat" class="form-control">
+                                </div>
+                                @error('judul_riwayat')
+                                        <p>{{$message}}</p>
+                                    @enderror
+                                <div class="mb-5">
+                                    <label for="point" class="form-label">Catatan</label>
+                                    <input type="text" name="catatan_riwayat" class="form-control">
+                                </div>
+                                @error('catatan_riwayat')
+                                        <p>{{$message}}</p>
+                                    @enderror
+
+                                    {{-- <div class="mb-5">
+                                        <label for="point" class="form-label">Waktu</label>
+                                        <input type="datetime-local" name="waktu" class="form-control">
+                                    </div> --}}
+                               
+
                                 
-                                <input type="submit" name="submit" class="btn btn-info" value="Simpan">
+                                <button type="submit" name="submit" class="btn btn-info">Simpan</button>
                             
                             </form>
                             <!-- END: Form Layout -->
@@ -167,6 +181,17 @@ License: You must have a valid license purchased only from themeforest(the above
 
            
             @include('template.scricpt')
-            <!-- END: JS Assets-->
+                <script>
+                    function getPoint(selectObject) {
+                        var data = <?php echo json_encode($riwayat)?>;
+                        data.forEach(element => {
+                            if(element.id_kategori_riwayat == selectObject.value) {
+                                console.log(element);
+                                document.getElementById("catatan_riwayat").value = element.catatan_riwayat;
+
+                            }
+                        });
+                    }
+                </script>
         </div>   
     </html>

@@ -27,14 +27,14 @@ class PenangananController extends Controller
             ]);
         
             
-            return redirect('/ketpenanganan')->with('toast_success', 'Data Berhasil Ditambahkan');;
+            return redirect('/ketpenanganan')->with('toast_success', 'Data Berhasil Ditambahkan');
         }
 
      public function destroy($id_kategori_penanganan) ///DELETE
         {
             $ket = ketpenanganan::find($id_kategori_penanganan);
             $ket->delete();
-            return redirect('/ketpenanganan'->with('toast_success', 'Data Berhasil Dihapus');;
+            return redirect('/ketpenanganan')->with('toast_success', 'Data Berhasil Dihapus');
         }
 
         public function edit($id_kategori_penanganan)  ///EDIT
@@ -49,6 +49,6 @@ class PenangananController extends Controller
         'nama_kategori_penanganan' => $request->nama_kategori_penanganan,
                 'catatan' => $request->catatan,
        ]);
-        return redirect('/ketpenanganan')->with('toast_success', 'Data Berhasil Diupdate');;
+        return redirect('/ketpenanganan')->with('toast_success', 'Data Berhasil Diupdate');
     }
 }

@@ -119,6 +119,11 @@
                                 <div  >
                                     <select class="tom-select w-full" name="kelas"required>
                                         <option  value="">--PILIH KELAS--</option>
+                                        <option  value="X KI1">X BFI</option>
+                                        <option  value="X KI1">X DKV1</option>
+                                        <option  value="X KI1">X DKV2</option>
+                                        <option  value="X KI1">X PG</option>
+                                        <option  value="X KI1">X DKV</option>
                                         <option  value="X KI1">X KI1</option>
                                         <option  value="X KI2">X KI2</option>
                                         <option  value="X MM1">X MM1</option>

@@ -16,11 +16,10 @@ class Siswa extends Authenticatable
     
         use HasFactory;
         protected $table = 'tb_siswa';
-<<<<<<< HEAD
+
         protected $guarded ='tb_siswa';
-=======
-        protected $guarded = [];
->>>>>>> 5320b8a665490443f655e8a1ff560dfa47e9a309
+
+
         protected $primaryKey = 'id_siswa';
     
 
@@ -37,11 +36,11 @@ class Siswa extends Authenticatable
         'kelas',
         'email',
         'password',
-<<<<<<< HEAD
+
         // 'api_token',
-=======
+
         'api_token',
->>>>>>> 5320b8a665490443f655e8a1ff560dfa47e9a309
+
     ];
     public function pelanggaran()
     {
