@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\API\ApiFormatter;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\KetPelanggaran;
 use App\Models\guru;
 use App\Models\Pelanggaran;
+use App\Models\PelanggaranAPImodel;
 use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
@@ -84,7 +86,7 @@ class PelanggaranController extends Controller
             'id_kategori_pelanggaran' => 'required',
             'id_siswa' => 'required',
             'id' => 'required',
-            'point' => 'required',
+            'point' => 'required|numeric',
             'catatan' => 'required',
             'waktu' => 'required'
         ]);
@@ -132,4 +134,22 @@ class PelanggaranController extends Controller
         $ket1->delete();
         return redirect('/pelanggaran')->with('toast_success', 'Data Berhasil Dihapus');;
     }
+
+
+    public function PelanggaranAPI()
+    {
+        // $pelanggaran=pelanggaran::all();
+        // return response()->json($pelanggaran);
+      // username
+      // password
+      // cek di db 
+      // kalo username sapa passwordnya benar nampiling smua datanya
+      $data = PelanggaranAPImodel::where('id_pelanggaran');
+        if($data){
+            return ApiFormatter::createApi(200, 'Succes',$data);
+        }else{
+            return ApiFormatter::createApi(400, 'Gagal');
+        }   
+     }
+
 }

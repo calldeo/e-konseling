@@ -38,6 +38,9 @@ route::get('/login',[LoginController::class,'halamanlogin'])->name('login');
 route::post('/postlogin',[LoginController::class,'postlogin'])->name('postlogin');
 route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
+
+
+route::post('/importguru',[GuruController::class,'guruimportexcel'])->name('guruimportexcel');
 route::post('/importsiswa',[SiswaController::class,'siswaimportexcel'])->name('siswaimportexcel');
 
 
@@ -52,11 +55,13 @@ route::get('/ketpenghargaan',[PenghargaanController::class,'ketpenghargaan'])->n
 route::get('/ketriwayat',[RiwayatController::class,'ketriwayat'])->name('ketriwayat');
 route::get('/ketpenanganan',[PenangananController::class,'ketpenanganan'])->name('ketpenanganan');
 
-// Route::group(['middleware' => ['auth','ceklevel:guru']], function (){
+Route::group(['middleware' => ['auth','ceklevel:admin,guru']], function (){
     route::get('/home',[HomeController::class,'index'])->name('home');
-    route::get('/siswa',[SiswaController::class,'siswa'])->name('siswa');
-    route::get('/guru',[GuruController::class,'guru'])->name('guru');
-// });
+    
+});
+
+route::get('/siswa',[SiswaController::class,'siswa'])->name('siswa');
+route::get('/guru',[GuruController::class,'guru'])->name('guru');
 
 
 route::get('/tambah_guru',[GuruController::class,'tambahguru'])->name('tambahguru');

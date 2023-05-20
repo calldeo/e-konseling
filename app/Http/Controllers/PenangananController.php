@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\ketpenanganan;
+use App\Models\Penanganan;
+
 class PenangananController extends Controller
 {
-    public function penanganan(){
-        return view('halaman.penanganan');
+    public function penanganan(Request $request)
+    {
+        $keyword=$request->keyword;
+        $data = Penanganan::where('id_kategori_penanganan','LIKE','%'.$request->search.'%')->Paginate(5);
+        return view('halaman.penanganan', compact('data'));
     }
 
     public function ketpenanganan(){

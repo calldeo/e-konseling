@@ -124,6 +124,7 @@
             </div>
             <!-- END: Content -->
         </div>
+        @include('sweetalert::alert')
         
         @include('template.scricpt')
     </div> 

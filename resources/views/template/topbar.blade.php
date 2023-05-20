@@ -25,15 +25,15 @@
             <div class="dropdown-menu w-56">
                 <ul class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
                     <li class="p-2">
-                        <div class="font-medium">Johnny Depp</div>
-                        <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">DevOps Engineer</div>
+                        <div class="font-medium">{{auth()->user()->name}}</div>
+                        <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">{{auth()->user()->level}}</div>
                     </li>
                     <li>
                         <hr class="dropdown-divider border-white/[0.08]">
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile </a>
-                    </li>
+                    </li> --}}
                    
                     <li>
                         <a href="/login" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>

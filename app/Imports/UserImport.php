@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Siswa;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Illuminate\Support\Facades\Hash;
@@ -16,12 +17,16 @@ class UserImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Siswa([
-            'nisn'=> $row['nisn'],
-            'nama'=> $row['nama'],
-            'kelas'=> $row['kelas'],
-            'email'=> $row['password'],
-            'password'=> Hash::make($row['password'])
+        return new User([
+            'id'=> $row[0],
+            'name'=> $row[1],
+            'level'=> $row[2],
+            'email'=> $row[3],
+            'password'=>bcrypt($row[4]),
+            // 'updated_at'=>$row[6],
+            // 'created_at'=>$row[7],
+
+
         ]);
     }
 }

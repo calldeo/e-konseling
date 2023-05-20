@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Guru - Si Beka</title>
+    <title>Pelanggaran - Si Beka</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('dashboards/dist/css/app.css')}}" />
     <head>
@@ -95,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="content">
                     <div class="intro-y flex items-center mt-8">
                         <h2 class="text-lg font-medium mr-auto">
-                            Tambah Guru
+                            Tambah Pelanggaran
                         </h2>
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -124,6 +124,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <select class="tom-select w-full"  onchange="getPoint(this)" name="id_kategori_pelanggaran" required>
                                             {{-- <option value="">Pilih Kategori Pelanggaran</option> --}}
                                             @foreach ($pelanggaran as $plg)
+                                            <option  value="">--PILIH PELANGGARAN--</option>
                                             <option value="{{ $plg->id_kategori_pelanggaran}}">{{ $plg->kategori_pelanggaran }}</option>
                                             
                                         @endforeach
@@ -138,6 +139,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div  >
                                         <select class="tom-select w-full" name="id" required>
                                             @foreach ($guru as $item)
+                                            <option  value="">--PILIH GURU--</option>
                                             <option value="{{ $item->id}}">{{ $item->name }}</option>
                                             
                                         @endforeach
@@ -161,7 +163,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control">
+                                    <input type="text" name="point" id="point" class="form-control" >
                                 </div>
 
                                 
@@ -174,7 +176,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <!-- END: Content -->
             </div>
-
+            @include('sweetalert::alert')
            
             @include('template.scricpt')
                 <script>

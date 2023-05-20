@@ -1,5 +1,6 @@
 <nav class="side-nav side-nav--simple">
     <ul>
+        
         <li>
             <a href="/home" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
@@ -9,8 +10,11 @@
                 </div>
             </a>
         </li>
-      
+        @if (auth()->user()->level=="admin")
         <li>
+           
+                
+          
             <a href="/siswa" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="user"></i> </div>
                 <div class="side-menu__title">
@@ -18,9 +22,10 @@
                     <div class="side-menu__sub-icon"> <i data-lucide="chevron-down"></i> </div>
                 </div>
             </a>
+           
         </li>
-   
-
+        @endif
+        @if (auth()->user()->level=="admin")
         <li>
             <a href="/guru" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="user"></i> </div>
@@ -30,9 +35,10 @@
                 </div>
             </a>
         </li>
+        @endif
        
 
-
+        @if (auth()->user()->level=="guru")
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="message-square"></i> </div>
@@ -57,9 +63,9 @@
                
             </ul>
         </li>
+        @endif
         
-        
-
+        @if (auth()->user()->level=="guru")
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="award"></i> </div>
@@ -84,7 +90,7 @@
                
             </ul>
         </li>
-
+@endif
 
 
 
@@ -116,7 +122,7 @@
 
 
 
-
+        @if (auth()->user()->level=="guru")
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="trello"></i> </div>
@@ -141,6 +147,7 @@
                
             </ul>
         </li>
+        @endif
 
 
         

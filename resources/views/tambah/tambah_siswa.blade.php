@@ -105,16 +105,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                 @csrf
                                 <div class="mb-5">
                                     <label for="name" class="form-label">NISN</label>
-                                    <input type="number" name="nisn" id="nisn" class="form-control"   required>
+                                    <input type="number" name="nisn" id="nisn" class="form-control"   >
                                 </div>
                                 <div class="mb-5">
                                     <label for="name" class="form-label">Nama</label>
-                                    <input type="text" name="nama"  id="nama" class="form-control" min="6" max="10" onkeyup="lettersOnly(this)"  required>
+                                    <input type="text" name="nama"  id="nama" class="form-control" min="6" max="10" onkeyup="lettersOnly(this)"  >
                                 </div>
                                 <div  class="mb-5">
                                     <label for="name" class="form-label">Kelas</label>
                                     <div  >
-                                        <select class="tom-select w-full" name="kelas" required>
+                                        <select class="tom-select w-full" name="kelas" >
                                             <option  value="">--PILIH KELAS--</option>
                                             <option  value="X KI1">X BFI</option>
                                             <option  value="X KI1">X DKV1</option>
@@ -148,11 +148,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>    
                                   <div class="mb-5">
                                     <label for="email" class="form-label">E mail</label>
-                                    <input type="email" name="email" class="form-control"  required>
+                                    <input type="email" name="email" class="form-control"  >
                                   </div>
                                   <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control"   required>
+                                    <input type="password" name="password" class="form-control"   >
                                   </div> 
                                 
                                 <input type="submit" name="submit" class="btn btn-info" value="Simpan">
@@ -168,5 +168,7 @@ License: You must have a valid license purchased only from themeforest(the above
            
             @include('template.scricpt')
             <!-- END: JS Assets-->
+
+            @include('sweetalert::alert')
         </div>   
     </html>

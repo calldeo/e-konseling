@@ -133,9 +133,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             <table class="table table-report -mt-2">
                                 <thead>
                                     <tr>
-                                        <th class="whitespace-nowrap">No</th>
-                                        <th class="whitespace-nowrap">Nama Pelanggaran</th>
-                                        <th class="whitespace-nowrap">Deksripsi Pelanggaran</th>
+                                        <th class="text-center whitespace-nowrap">No</th>
+                                        <th class="text-center whitespace-nowrap">Nama Pelanggaran</th>
+                                        <th class="text-center whitespace-nowrap">Deksripsi Pelanggaran</th>
                                         <th class="text-center whitespace-nowrap">Point</th>
                                         {{-- <th class="text-center whitespace-nowrap">Username</th> --}}
                                         {{-- <th class="text-center whitespace-nowrap">Password</th> --}}
@@ -156,7 +156,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="flex justify-center items-center">
                                                 <a class="flex items-center mr-3" href="/ketpelanggaran/{{ $kp->id_kategori_pelanggaran }}/edit_ketpelanggaran"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
 
-                                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal-{{ $kp->id_pelanggaran}}"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                                <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal-{{ $kp->id_kategori_pelanggaran}}"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -172,7 +172,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <!-- BEGIN: Delete Confirmation Modal -->
                 @foreach($ketpelanggaran as $kp)
-                    <div id="delete-confirmation-modal-{{ $kp->id_pelanggaran}}" class="modal" tabindex="-1" aria-hidden="true">
+                    <div id="delete-confirmation-modal-{{ $kp->id_kategori_pelanggaran}}" class="modal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body p-0">

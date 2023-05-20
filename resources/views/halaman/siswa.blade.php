@@ -135,8 +135,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             <table class="table table-report -mt-2">
                                 <thead>
                                     <tr>
-                                        <th class="whitespace-nowrap">No</th>
-                                        <th class="whitespace-nowrap">NISN </th>
+                                        {{-- <th class="text-center whitespace-nowrap">No</th> --}}
+                                        {{-- <th class="text-center whitespace-nowrap"><input type="checkbox"></th> --}}
+                                        <th class="text-center whitespace-nowrap">NISN </th>
                                         <th class="text-center whitespace-nowrap">Nama</th>
                                         <th class="text-center whitespace-nowrap">Kelas</th>
                                         <th class="text-center whitespace-nowrap">E-mail</th>
@@ -149,8 +150,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 @foreach($siswa as $ss)
-                                        <td  class="text-center">{{$ss->id_siswa}}</td>
+                                 @foreach($data as $ss)
+                                        {{-- <td  class="text-center">{{$ss->id_siswa}}</td> --}}
+                                        {{-- <td><input type="checkbox"></td> --}}
                                         <td  class="text-center">{{$ss->nisn}}</td>
                                         <td class="text-center">{{$ss->nama}}</td>
                                         <td class="text-center">{{$ss->kelas}}</td>
@@ -171,7 +173,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 
                             </table>
                         <div class="my-5 ">
-                            {{$siswa ->links() }}
+                            {{$data ->links() }}
                         </div>
                         </div>
                         
@@ -188,7 +190,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN: Delete Confirmation Modal -->
                   
                         
-                    @foreach($siswa as $ss)
+                    {{-- @foreach($data as $ss) --}}
                     <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -203,7 +205,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                     <div class="px-5 pb-8 text-center">
-                                        <form action="/siswa/{{ $ss->id_siswa }}" method="POST">
+                                        <form action="/siswa/{{ 'id_siswa'}}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
@@ -216,7 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             
                         </div>
                     </div>
-                  @endforeach
+                  {{-- @endforeach --}}
                     
                     <div id="delete-confirmation-modal1" class="modal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">

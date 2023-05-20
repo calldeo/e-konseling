@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Guru - Si Beka</title>
+    <title>Penghargaan- Si Beka</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('dashboards/dist/css/app.css')}}" />
     <head>
@@ -95,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="content">
                     <div class="intro-y flex items-center mt-8">
                         <h2 class="text-lg font-medium mr-auto">
-                            Tambah Guru
+                            Edit Penghargaan
                         </h2>
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control">
+                                    <input type="text" name="point" id="point" class="form-control"disabled>
                                 </div>
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Catatan</label>
@@ -168,6 +168,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <!-- END: Content -->
             </div>
+            @include('sweetalert::alert')
 
            
             @include('template.scricpt')

@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\SiswaController;
+use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 route::get('siswa',[SiswaController::class,'SiswaAPI']);
+route::get('pelanggaran',[PelanggaranController::class,'PelanggaranAPI']);
+
 
 route::post('siswa',function(Request $request){
     $valid = Auth::attempt($request->all());

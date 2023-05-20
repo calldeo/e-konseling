@@ -179,6 +179,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Content -->
             </div>
 
+            @include('sweetalert::alert')
            
             @include('template.scricpt')
                 <script>

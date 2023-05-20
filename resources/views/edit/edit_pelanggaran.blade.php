@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
                               
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control">
+                                    <input type="text" name="point" id="point" class="form-control" disabled>
                                 </div>
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Catatan</label>
@@ -173,6 +173,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Content -->
             </div>
 
+            @include('sweetalert::alert')
            
             @include('template.scricpt')
                 <script>

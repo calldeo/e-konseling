@@ -133,10 +133,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <table class="table table-report -mt-2">
                                 <thead>
                                     <tr>
-                                        <th class="whitespace-nowrap">No</th>
-                                        <th class="whitespace-nowrap">Nama Siswa</th>
-                                        <th class="whitespace-nowrap">Nama Pelanggaran</th>
-                                        <th class="whitespace-nowrap">Nama Guru</th>
+                                        <th class="text-center whitespace-nowrap">No</th>
+                                        <th class="text-center whitespace-nowrap">Nama Siswa</th>
+                                        <th class="text-center whitespace-nowrap">Nama Pelanggaran</th>
+                                        <th class="text-center whitespace-nowrap">Nama Guru</th>
 
                                         <th class="text-center whitespace-nowrap">Point</th>
                                         <th class="text-center whitespace-nowrap">Catatan</th>  

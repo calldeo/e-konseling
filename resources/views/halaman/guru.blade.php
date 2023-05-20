@@ -112,7 +112,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <a href="/tambah_guru" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Guru </a>
                                         </li>
                                         <li>
-                                            <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
+                                            <a class="dropdown-item" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal1"> <i data-lucide="printer" class="w-4 h-4 mr-1"></i> Import Guru </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -133,10 +133,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <table class="table table-report -mt-2">
                                 <thead>
                                     <tr>
-                                        <th class="whitespace-nowrap">No</th>
-                                        <th class="whitespace-nowrap">Nama </th>
+                                        {{-- <th class="text-center whitespace-nowrap">No</th> --}}
+                                        <th class="text-center whitespace-nowrap">Nama </th>
                                         <th class="text-center whitespace-nowrap">Jenis Guru</th>
-                                        <th class="text-center whitespace-nowrap">Username</th>
+                                        <th class="text-center whitespace-nowrap">E-mail</th>
                                         {{-- <th class="text-center whitespace-nowrap">Password</th> --}}
 
                                         <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -144,7 +144,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </thead>
                                 <tbody>
                                  @foreach($users as $g)
-                                        <td  class="text-center">{{$g->id}}</td>
+                                        {{-- <td  class="text-center">{{$g->id}}</td> --}}
                                         <td  class="text-center">{{$g->name}}</td>
                                         <td class="text-center">{{$g->level}}</td>
                                         <td class="text-center">{{$g->email}}</td>
@@ -193,6 +193,35 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+
+                    <div id="delete-confirmation-modal1" class="modal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body p-0">
+                                    <div class="p-5 text-center">
+                                        <i data-lucide="file" class="w-16 h-16 text-primary mx-auto mt-3"></i> 
+                                        <div class="text-3xl mt-5">Import Data</div>
+                                        <div class="text-slate-500 mt-2">
+                                            Silahkan Masukkan Data
+                                        </div>
+                                    </div>
+                                    <div class="px-5 pb-8 text-center">
+                                        <form action="/importguru" method="POST" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <input type="file" name="file" required="required">
+                                            </div>
+                                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
+                                            <button type="submit"  class="btn btn-primary w-24" >Import</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                    

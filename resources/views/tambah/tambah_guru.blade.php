@@ -141,6 +141,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
            
             @include('template.scricpt')
+            @include('sweetalert::alert')
             <!-- END: JS Assets-->
         </div>   
     </html>
