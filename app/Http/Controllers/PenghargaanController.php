@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\API\ApiFormatter;
 use App\Models\KetPenghargaan;
 use DB;
 use Illuminate\Http\Request;
@@ -129,4 +130,21 @@ class PenghargaanController extends Controller
         $ket1->delete();
         return redirect('/ketpenghargaan')->with('toast_success', 'Data Berhasil Dihapus');;
     }
+
+
+    public function show($id_siswa)
+    {
+        // $pelanggaran=pelanggaran::all();
+        // return response()->json($pelanggaran);
+      // username
+      // password
+      // cek di db 
+      // kalo username sapa passwordnya benar nampiling smua datanya
+      $data = Penghargaan::where('id_siswa','=',$id_siswa)->get();
+        if($data){
+            return ApiFormatter::createApi(200, 'Succes',$data);
+        }else{
+            return ApiFormatter::createApi(400, 'Gagal');
+        }   
+     }
 }

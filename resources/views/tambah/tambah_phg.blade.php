@@ -156,11 +156,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                     @enderror
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control" disabled>
+                                    <input type="text" name="point" id="point" class="form-control" >
                                 </div>
 
                                 
                                 <button type="submit" name="submit" class="btn btn-info">Simpan</button>
+                                
                             
                             </form>
                             <!-- END: Form Layout -->

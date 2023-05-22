@@ -2,7 +2,7 @@
     <div class="h-full flex items-center">
         <!-- BEGIN: Logo -->
         <a href="" class="-intro-x hidden md:flex">
-            <img alt="Midone - HTML Admin Template" class="w-6" src="{{asset('dashboards/dist/images/logobeka.png')}}">
+            <img class="w-12" src="{{asset('dashboards/dist/images/logobeka.png')}}">
             <span class="text-white text-lg ml-3"> Si Beka </span> 
         </a>
         <!-- END: Logo -->

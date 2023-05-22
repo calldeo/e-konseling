@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{asset('ldg/img/favicon.png')}}" rel="icon">
-  <link href="{{asset('ldg/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link href="{{asset('ldg/img/team/logobeka.png')}}" rel="icon">
+  <link href="{{asset('ldg/img/team/logobeka.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -98,7 +98,7 @@
           </div>
         </div>
         <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
-          <img src="{{asset('ldg/img/hero-img.png')}}" class="img-fluid animated" alt="">
+          <img src="{{asset('ldg/img/Group 41.png')}}" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
@@ -132,10 +132,10 @@
           </div>
 
           <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5" data-aos="fade-left">
-            <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-            <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+            <h3>About</h3>
+            <p>Si-Beka situs layanan jejaring sosial berbasis website di mana para user bisa memasukkan data-data yang di butuhkan dalam bimbingan konseling sekolah dan juga user bisa mengoperasikan terkait hal yang di butuhkan dalam Bimbingan konseling sekolah. Si-Beka menyimpan data-data terkait siswa yang bermasalah dan berprestasi. Guru bisa memberikan penangan pada siswa yang bermasalh atau melakukan pelanggaran di nilai dari kategorinya dan juga guru bisa memberikan penghargaan kepada siswa yang berprestasi di nilai dari segi kategorinya juga.</p>
 
-            <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+            {{-- <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
               <h4 class="title"><a href="">Lorem Ipsum</a></h4>
               <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
@@ -151,7 +151,7 @@
               <div class="icon"><i class="bx bx-atom"></i></div>
               <h4 class="title"><a href="">Dine Pad</a></h4>
               <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
-            </div>
+            </div> --}}
 
           </div>
         </div>
@@ -293,53 +293,45 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="{{asset('ldg/img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
+                <img src="{{asset('ldg/img/testimonials/123.jpeg')}}" class="testimonial-img" alt="">
+                <h3>Deo Andreas Syaputra</h3>
+                <h4>ketua & Programmer Web</h4>
+              
               </div>
             </div><!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="{{asset('ldg/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
+                <img src="{{asset('ldg/img/testimonials/1.jpeg')}}" class="testimonial-img" alt="">
+                <h3>Amelia Fawwaz Zain</h3>
                 <h4>Designer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
+                
               </div>
             </div><!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="{{asset('ldg/img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
+                <img src="{{asset('ldg/img/testimonials/2.jpg')}}" class="testimonial-img" alt="">
+                <h3>Muhammad Rayhan</h3>
+                <h4>Progarammer Web</h4>
+                
               </div>
             </div><!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <img src="ldg/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
+                <h3>Restu Aji Prasetyo Saputra</h3>
+                <h4>Progarammer Mobile</h4>
+                
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="ldg/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <h3>Aditya Ibrar Abidillah</h3>
+                <h4>Progarammer Mobile</h4>
+                
               </div>
             </div><!-- End testimonial item -->
 
@@ -365,19 +357,83 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="100">
-              <div class="pic"><img src="ldg/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="ldg/img/team/123.jpeg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4>Deo Andreas Syaputra</h4>
+                <span>Ketua</span>
                 <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+                  {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
+                  <a href="http://wa.me/+6282228950590"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.instagram.com/_calldeo/"><i class="bi bi-instagram"></i></a>
+                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="ldg/img/team/1.jpeg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Amela Fawwaz Zain</h4>
+                <span>Desainer</span>
+                <div class="social">
+                  {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
+                  <a href="http://wa.me/+628533167475"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.instagram.com/aameliafz/"><i class="bi bi-instagram"></i></a>
+                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="ldg/img/team/2.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Muhammad Rayhan</h4>
+                <span>Programmer Web</span>
+                <div class="social">
+                  {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
+                  <a href="http://wa.me/+6282133254011"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.instagram.com/_calldeo/"><i class="bi bi-instagram"></i></a>
+                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="ldg/img/team/2.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Restu Aji Prasetyo Saputra</h4>
+                <span>Programmer Mobile</span>
+                <div class="social">
+                  {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
+                  <a href="http://wa.me/+6281937871615"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://instagram.com/hey_restu"><i class="bi bi-instagram"></i></a>
+                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="ldg/img/team/2.jpg" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>Aditya Ibrar Abidillah</h4>
+                <span>Programmer Mobile</span>
+                <div class="social">
+                  {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
+                  <a href="http://wa.me/+6285230258986"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.instagram.com/aditya.ibrar/"><i class="bi bi-instagram"></i></a>
+                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                </div>
+              </div>
+            </div>
+          </div>
+
 
 
           
@@ -398,7 +454,7 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  {{-- <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -470,7 +526,7 @@
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </footer><!-- End Footer --> --}}
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>

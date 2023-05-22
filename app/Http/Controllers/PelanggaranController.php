@@ -136,7 +136,7 @@ class PelanggaranController extends Controller
     }
 
 
-    public function PelanggaranAPI()
+    public function show($id_siswa)
     {
         // $pelanggaran=pelanggaran::all();
         // return response()->json($pelanggaran);
@@ -144,7 +144,7 @@ class PelanggaranController extends Controller
       // password
       // cek di db 
       // kalo username sapa passwordnya benar nampiling smua datanya
-      $data = PelanggaranAPImodel::where('id_pelanggaran');
+      $data = Pelanggaran::where('id_siswa','=',$id_siswa)->get();
         if($data){
             return ApiFormatter::createApi(200, 'Succes',$data);
         }else{

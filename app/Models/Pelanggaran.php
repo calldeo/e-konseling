@@ -31,6 +31,7 @@ class Pelanggaran extends Authenticatable
      */
     protected $fillable = [
         'id_kategori_pelanggaran',
+        'nama',
         'id_siswa',
         'id',
         'point',

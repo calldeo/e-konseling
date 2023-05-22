@@ -190,6 +190,42 @@ class SiswaController extends Controller
      }
 
 
+     public function updateAPI(Request $request,$id_siswa)
+     {
+        // if($request->wantsJson()) {
+        //     return response()->json(['P+'], 200);
+        // }
+        
+            $request ->validate([
+                // 'nisn' => ['required','min:9','max:12','unique:tb_siswa,nisn'],
+                //  'nama' => ['required','min:3','max:30'],
+                //  'kelas'=> 'required',
+                //  'email' => 'required|unique:tb_siswa,email',
+                'password' => ['required','min:8','max:12'],
+        
+            ]);
+            
+            $tb_siswa = Siswa::findOrFail($id_siswa);
+
+            $tb_siswa->update([
+                // 'nisn' => $request->nisn,
+                // 'nama' =>$request->nama,
+                // 'kelas' =>$request->kelas,
+                // 'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+
+        $data = Siswa::where('id_siswa','=',$tb_siswa->id_siswa)->get();
+        
+        if($data){
+            return ApiFormatter::createApi(200, 'Success',$data);
+        }else{
+            return ApiFormatter::createApi(400,'Failed'); 
+        }
+       
+     }
+
+
         public function loginapi(Request $request)
         {
             $credentials = $request->only('email', 'password');

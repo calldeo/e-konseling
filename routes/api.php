@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PelanggaranController;
+use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\SiswaController;
 use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
@@ -25,7 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 route::get('siswa',[SiswaController::class,'SiswaAPI']);
-route::get('pelanggaran',[PelanggaranController::class,'PelanggaranAPI']);
+route::post('siswa/update/{id_siswa}',[SiswaController::class,'updateAPI']);
+
+route::get('pelanggaran/show/{id_siswa}',[PelanggaranController::class,'show']);
+route::get('penghargaan/show/{id_siswa}',[PenghargaanController::class,'show']);
+
 
 
 route::post('siswa',function(Request $request){
