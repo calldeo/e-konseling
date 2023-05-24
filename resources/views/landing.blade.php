@@ -320,7 +320,7 @@
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="ldg/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <img src="ldg/img/testimonials/5.jpeg" class="testimonial-img" alt="">
                 <h3>Restu Aji Prasetyo Saputra</h3>
                 <h4>Progarammer Mobile</h4>
                 
@@ -328,7 +328,7 @@
             </div>
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="ldg/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <img src="ldg/img/testimonials/12.jpeg" class="testimonial-img" alt="">
                 <h3>Aditya Ibrar Abidillah</h3>
                 <h4>Progarammer Mobile</h4>
                 
@@ -365,7 +365,7 @@
                   {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                   <a href="http://wa.me/+6282228950590"><i class="bi bi-whatsapp"></i></a>
                   <a href="https://www.instagram.com/_calldeo/"><i class="bi bi-instagram"></i></a>
-                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                  <a href="https://www.linkedin.com/in/deo-andreas-syaputra-401199277/"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -381,7 +381,7 @@
                   {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                   <a href="http://wa.me/+628533167475"><i class="bi bi-whatsapp"></i></a>
                   <a href="https://www.instagram.com/aameliafz/"><i class="bi bi-instagram"></i></a>
-                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                  <a href="https://www.linkedin.com/in/amelia-fawwaz-577957276/"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -397,14 +397,14 @@
                   {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                   <a href="http://wa.me/+6282133254011"><i class="bi bi-whatsapp"></i></a>
                   <a href="https://www.instagram.com/_calldeo/"><i class="bi bi-instagram"></i></a>
-                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                  <a href="https://www.linkedin.com/in/muhammad-rayhan-6683a4277/"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="100">
-              <div class="pic"><img src="ldg/img/team/2.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="ldg/img/team/5.jpeg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Restu Aji Prasetyo Saputra</h4>
                 <span>Programmer Mobile</span>
@@ -412,7 +412,7 @@
                   {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                   <a href="http://wa.me/+6281937871615"><i class="bi bi-whatsapp"></i></a>
                   <a href="https://instagram.com/hey_restu"><i class="bi bi-instagram"></i></a>
-                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                  <a href="https://www.linkedin.com/in/restu-aji-prasetyo-saputra-132337277/"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>
@@ -420,7 +420,7 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="zoom-in" data-aos-delay="100">
-              <div class="pic"><img src="ldg/img/team/2.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="ldg/img/team/12.jpeg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Aditya Ibrar Abidillah</h4>
                 <span>Programmer Mobile</span>
@@ -428,7 +428,7 @@
                   {{-- <a href=""><i class="bi bi-twitter"></i></a> --}}
                   <a href="http://wa.me/+6285230258986"><i class="bi bi-whatsapp"></i></a>
                   <a href="https://www.instagram.com/aditya.ibrar/"><i class="bi bi-instagram"></i></a>
-                  {{-- <a href=""><i class="bi bi-linkedin"></i></a> --}}
+                  <a href="https://www.linkedin.com/in/aditya-ibrar-abdillah-929a59276/"><i class="bi bi-linkedin"></i></a>
                 </div>
               </div>
             </div>

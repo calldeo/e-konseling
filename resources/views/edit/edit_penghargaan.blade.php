@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control"disabled>
+                                    <input type="text" name="point" id="point" class="form-control" >
                                 </div>
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Catatan</label>

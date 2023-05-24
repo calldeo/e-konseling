@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\API\ApiFormatter;
+use App\Http\Resources\PelanggaranSiswaCollection;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\KetPelanggaran;
@@ -136,20 +137,43 @@ class PelanggaranController extends Controller
     }
 
 
-    public function show($id_siswa)
+    // public function show($id_siswa)
+    // {
+    //     $pelanggaran=pelanggaran::all();
+    //     return response()->json($pelanggaran);
+    //   username
+    //   password
+    //   cek di db 
+    //   kalo username sapa passwordnya benar nampiling smua datanya
+    //   $data = Pelanggaran::where('id_siswa','=',$id_siswa)->get();
+    //     if($data){
+    //         return ApiFormatter::createApi(200, 'Succes',$data);
+    //     }else{
+    //         return ApiFormatter::createApi(400, 'Gagal');
+    //     }   
+    //  }
+
+    public function show()
     {
         // $pelanggaran=pelanggaran::all();
         // return response()->json($pelanggaran);
-      // username
-      // password
-      // cek di db 
-      // kalo username sapa passwordnya benar nampiling smua datanya
-      $data = Pelanggaran::where('id_siswa','=',$id_siswa)->get();
-        if($data){
-            return ApiFormatter::createApi(200, 'Succes',$data);
-        }else{
-            return ApiFormatter::createApi(400, 'Gagal');
-        }   
-     }
-
+        // username
+        // password
+        // cek di db 
+        // kalo username sapa passwordnya benar nampiling smua datanya
+        $data = PelanggaranSiswaCollection::collection(Pelanggaran::with(['ketpelanggaran', 'siswa'])->get());
+        if ($data) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil mengambil data',
+                'data_pelanggaran' => $data
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil data',
+                'data_pelanggaran' => null
+            ]);
+        }
+    }
 }

@@ -95,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="content">
                     <div class="intro-y flex items-center mt-8">
                         <h2 class="text-lg font-medium mr-auto">
-                            Tambah Guru
+                           Edit Pelanggaran
                         </h2>
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
                               
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control" disabled>
+                                    <input type="text" name="point" id="point" class="form-control" >
                                 </div>
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Catatan</label>

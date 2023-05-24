@@ -103,9 +103,17 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- BEGIN: Form Layout -->
                             <form action="/siswa/store" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="mb-5">
-                                    <label for="name" class="form-label">NISN</label>
-                                    <input type="number" name="nisn" id="nisn" class="form-control"   >
+                                <div  class="mb-5">
+                                    <label for="name" class="form-label">Nama Siswa</label>
+                                    <div  >
+                                        <select class="tom-select w-full" name="id_siswa" required>
+                                            @foreach ($siswa as $ket)
+                                            <option  value="">--NISN SUDAH TERDAFTAR--</option>
+                                            <option value="{{ $ket->id_siswa }}">{{ $ket->nisn }}</option>
+                                            
+                                        @endforeach
+                                        </select >
+                                    </div>
                                 </div>
                                 <div class="mb-5">
                                     <label for="name" class="form-label">Nama</label>

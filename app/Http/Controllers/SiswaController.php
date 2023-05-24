@@ -52,7 +52,15 @@ class SiswaController extends Controller
 
 
     public function tambahsiswa(){
-        return view('tambah.tambah_siswa');
+        
+       
+       
+            $siswa = DB::table('tb_siswa')->get();
+            // $pelanggaran = DB::table('tb_kategori_pelanggaran')->get();
+            // $guru = User::where('level', 'guru')->get();
+            // return view('tambah.tambah_plg', compact('siswa', 'pelanggaran', 'guru'));
+            return view('tambah.tambah_siswa',compact('siswa'));
+      
       }
       public function store(Request $request )
       {   
@@ -143,10 +151,10 @@ class SiswaController extends Controller
       public function update(Request $request, $id)
   {
     $data = $request->validate([
-        'nisn' => ['required','min:9','max:12','unique:tb_siswa,nisn'],
+        'nisn' => ['required','min:9','max:12',],
         'nama' => ['required','min:3','max:30'],
         'kelas'=> 'required',
-        'email' => 'required|unique:tb_siswa,email',
+        'email' => 'required',
         'password' => ['required','min:8','max:12'],
         
         

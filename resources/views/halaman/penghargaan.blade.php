@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Pelanggaran - Si Beka</title>
+    <title>Penghargaan - Si Beka</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('dashboards/dist/css/app.css')}}" />
     <head>
@@ -97,7 +97,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- BEGIN: Content -->
                 <div class="content">
                     <h2 class="intro-y text-lg font-medium mt-10">
-                        Data Pelanggaran
+                        Data Penghargaan
                     </h2>
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
@@ -109,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="dropdown-menu w-40">
                                     <ul class="dropdown-content">
                                         <li>
-                                            <a href="/tambah_phg" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Pelanggaran </a>
+                                            <a href="/tambah_phg" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Penghargaan </a>
                                         </li>
                                         <li>
                                             <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
