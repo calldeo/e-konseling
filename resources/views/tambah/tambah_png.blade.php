@@ -45,70 +45,53 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <div class="intro-y col-span-12 lg:col-span-12">
                             <!-- BEGIN: Form Layout -->
-                            <form action="/plg/storeplg" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('penanganan.store') }}" method="POST">
                                 @csrf
                                
                                 <div  class="mb-5">
-                                    <label for="name" class="form-label">Nama Siswa</label>
-                                    <div  >
-                                        <select class="tom-select w-full" name="id_siswa" required>
-                                            @foreach ($siswa as $ket)
-                                            <option  value="">--PILIH SISWA--</option>
-                                            <option value="{{ $ket->id_siswa }}">{{ $ket->nama }}</option>
-                                            
+                                    <label for="siswa_id">Siswa</label>
+                                    <select name="id_siswa" id="id_siswa" class="form-control">
+                                        @foreach($dataSiswa as $siswa)
+                                            <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
                                         @endforeach
-                                        </select >
-                                    </div>
+                                    </select>
                                 </div>
+
                                 <div  class="mb-5">
-                                    <label for="id_kategori_pelanggaran" class="form-label">Pelanggaran</label>
-                                    
-                                    <div  >
-                                        {{-- <option value="">Pilih Kategori Pelanggaran</option> --}}
-                                        <select class="tom-select w-full"  onchange="getPoint(this)" name="id_kategori_pelanggaran" required>
-                                            {{-- <option value="">Pilih Kategori Pelanggaran</option> --}}
-                                            @foreach ($pelanggaran as $plg)
-                                            <option  value="">--PILIH PELANGGARAN--</option>
-                                            <option value="{{ $plg->id_kategori_pelanggaran}}">{{ $plg->kategori_pelanggaran }}</option>
-                                            
+                                <label for="pelanggaran_id">Pelanggaran:</label>
+                                <select name="id_pelanggaran" id="id_pelanggaran" class="form-control">
+                                    @foreach($dataPelanggaran as $pelanggaran)
+                                        <option value="{{ $pelanggaran->id }}">{{ $pelanggaran->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                                <div  class="mb-5">
+                                    <label for="guru_id">Guru</label>
+                                    <select name="id" id="id" class="form-control">
+                                        @foreach($dataGuru as $guru)
+                                            <option value="{{ $guru->id }}">{{ $guru->nama }}</option>
                                         @endforeach
-                                        </select >
-                                    </div>
+                                    </select>
                                 </div>
-                                @error('id_kategori_pelanggaran')
+                                @error('id')
                                         <p>{{$message}}</p>
                                     @enderror
-                                {{-- <div  class="mb-5">
-                                    <label for="name" class="form-label">Nama Guru</label>
-                                    <div  >
-                                        <select class="tom-select w-full" name="id" required>
-                                            @foreach ($guru as $item)
-                                            <option  value="">--PILIH GURU--</option>
-                                            <option value="{{ $item->id}}">{{ $item->name }}</option>
-                                            
-                                        @endforeach
-                                        </select >
-                                    </div>
-                                    @error('id')
-                                        <p>{{$message}}</p>
-                                    @enderror
-                                </div> --}}
                                 <div class="mb-5">
-                                    <label for="point" class="form-label">Catatan</label>
-                                    <input type="text" name="catatan" class="form-control">
+                                    <label for="status">Status:</label>
+                                    <input type="text" name="status" id="status" class="form-control">
                                 </div>
                                 
-                                @error('catatan')
+                                @error('status')
                                         <p>{{$message}}</p>
                                     @enderror
 
                                     <div class="mb-5">
-                                        <label for="point" class="form-label">Waktu</label>
-                                        <input type="datetime-local" name="waktu" class="form-control">
+                                        <label for="tindak_lanjut">Tindak Lanjut:</label>
+                                         <textarea name="tindak_lanjut" id="tindak_lanjut" class="form-control"></textarea>
                                     </div>
                                 <div class="mb-5">
-                                    <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control" >
+                                    <label for="total_point">Total Point:</label>
+                                    <input type="text" name="total_point" id="total_point" class="form-control" value="{{ $totalPoint }}" readonly>
                                 </div>
 
                                 
@@ -128,7 +111,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     function getPoint(selectObject) {
                         var data = <?php echo json_encode($pelanggaran)?>;
                         data.forEach(element => {
-                            if(element.id_kategori_pelanggaran == selectObject.value) {
+                            if(element.id_pelanggaran == selectObject.value) {
                                 console.log(element);
                                 document.getElementById("point").value = element.point;
 

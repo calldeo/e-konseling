@@ -26,10 +26,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 route::get('siswa',[SiswaController::class,'SiswaAPI']);
-route::post('siswa/update/{id_siswa}',[SiswaController::class,'updateAPI']);
+route::post('siswa/update',[SiswaController::class,'updateAPI']);
 
 route::get('pelanggaran/show',[PelanggaranController::class,'show']);
-route::get('penghargaan/show/{id_siswa}',[PenghargaanController::class,'show']);
+route::get('penghargaan/show',[PenghargaanController::class,'show']);
 
 
 

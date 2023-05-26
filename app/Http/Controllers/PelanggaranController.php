@@ -11,16 +11,22 @@ use App\Models\guru;
 use App\Models\Pelanggaran;
 use App\Models\PelanggaranAPImodel;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as FacadesDB;
 
 class PelanggaranController extends Controller
 {
     public function pelanggaran(Request $request)
     {
-        $keyword=$request->keyword;
-        $data = Pelanggaran::where('id_kategori_pelanggaran','LIKE','%'.$request->search.'%')->Paginate(5);
-        return view('halaman.pelanggaran', compact('data'));
+        $search = $request->search;
+        $data = Pelanggaran::whereHas('siswa', function ($query) use ($search) {
+                $query->where('nama', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
+        $data->appends(['search' => $search]);
+        return view('halaman.pelanggaran', compact('data', 'search'));
     }
+    
 
     public function ketpelanggaran(Request $request)
     {
@@ -74,34 +80,45 @@ class PelanggaranController extends Controller
     //PELANGGARAN
 
 
-    public function tambahplg()
+    public function tambahplg(Request $request)
     {
+        // Mendapatkan ID guru yang sedang login
+        $guruId = Auth::id();
+    
+        // Mendapatkan informasi guru berdasarkan ID
+        $guru = Guru::find($guruId);
+    
+        // Mendapatkan data siswa
         $siswa = DB::table('tb_siswa')->get();
+    
+        // Mendapatkan data pelanggaran
         $pelanggaran = DB::table('tb_kategori_pelanggaran')->get();
-        $guru = User::where('level', 'guru')->get();
+    
+        // Menampilkan view tambah pelanggaran dengan data siswa, pelanggaran, dan guru
         return view('tambah.tambah_plg', compact('siswa', 'pelanggaran', 'guru'));
     }
+    
     public function storeplg(Request $request)
     {
+        // Mendapatkan ID guru yang sedang login
+        $guruId = Auth::id();
+    
         $data = $request->validate([
             'id_kategori_pelanggaran' => 'required',
             'id_siswa' => 'required',
-            'id' => 'required',
             'point' => 'required|numeric',
             'catatan' => 'required',
             'waktu' => 'required'
         ]);
-        // dd($data);
+    
+        // Menambahkan ID guru ke dalam data pelanggaran
+        $data['id'] = $guruId;
+    
         Pelanggaran::create($data);
-        // DB::table('tb_pelanggaran')->insert([
-        //     'id_kategori_pelanggaran' => $request->id_kategori_pelanggaran,
-        //     'id_siswa'=>$request->id_siswa,
-        //     'id'=>$request->id,
-        //     'point' => $request->point,
-        //     'catatan'=>$request->catatan,
-        // ]);
-        return redirect('/pelanggaran');
+    
+        return redirect('/pelanggaran')->with('toast_success', 'Data Berhasil Ditambahkan');
     }
+    
     public function editplg($id_pelanggaran)  ///EDIT
     {
         $siswa = DB::table('tb_siswa')->get();
@@ -129,11 +146,16 @@ class PelanggaranController extends Controller
         return redirect('/pelanggaran')->with('toast_success', 'Data Berhasil Diupdate');
     }
 
-    public function destroy1($id_pelanggaran) ///DELETE
+    public function destroy1($id)
     {
-        $ket1 = Pelanggaran::find($id_pelanggaran);
-        $ket1->delete();
-        return redirect('/pelanggaran')->with('toast_success', 'Data Berhasil Dihapus');;
+        // Find the record
+        $siswa = Pelanggaran::findOrFail($id);
+        
+        // Delete the record
+        $siswa->delete();
+        
+        // Redirect to the index page with a success message
+        return redirect()->route('pelanggaran')->with('toast_success', 'Data Berhasil Dihapus');
     }
 
 

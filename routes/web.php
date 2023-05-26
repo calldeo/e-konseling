@@ -57,6 +57,7 @@ route::get('/ketpenanganan',[PenangananController::class,'ketpenanganan'])->name
 
 Route::group(['middleware' => ['auth','ceklevel:admin,guru']], function (){
     route::get('/home',[HomeController::class,'index'])->name('home');
+    // route::get('/home',[HomeController::class,'penghargaan'])->name('home');
     
 });
 
@@ -66,22 +67,43 @@ route::get('/guru',[GuruController::class,'guru'])->name('guru');
 
 route::get('/tambah_guru',[GuruController::class,'tambahguru'])->name('tambahguru');
 Route::post('/guru/store',[GuruController::class,'store']);
-Route::delete('/guru/{id}',[GuruController::class,'destroy'])->name('destroy');
+Route::delete('/guru/{id}', [GuruController::class,'destroy'])->name('guru.destroy');
 Route::get('/guru/{id}/edit_guru',[GuruController::class,'edit']);
 Route::put('/guru/{id}',[GuruController::class,'update']);
 
 route::get('/tambah_plg',[PelanggaranController::class,'tambahplg'])->name('tambahplg');
 Route::post('/plg/storeplg',[PelanggaranController::class,'storeplg']);
-Route::delete('/pelanggaran/{id_pelanggaran}',[PelanggaranController::class,'destroy1'])->name('destroy1');
+Route::delete('/pelanggaran/{id_pelanggaran}', [PelanggaranController::class,'destroy1'])->name('pelanggaran.destroy1');
 Route::get('/pelanggaran/{id_pelanggaran}/edit_pelanggaran',[PelanggaranController::class,'editplg']);
 Route::put('/pelanggaran/{id_pelanggaran}',[PelanggaranController::class,'updateplg']);
+
+route::get('/tambah_ketplg',[PelanggaranController::class,'tambahketplg'])->name('tambahketplg');
+Route::post('/ketplg/store',[PelanggaranController::class,'store']);
+Route::delete('/ketpelanggaran/{id_kategori_pelanggaran}',[PelanggaranController::class,'destroy'])->name('ketpelanggaran.destroy');
+Route::get('/ketpelanggaran/{id_kategori_pelanggaran}/edit_ketpelanggaran',[PelanggaranController::class,'edit']);
+Route::put('/ketpelanggaran/{id_kategori_pelanggaran}',[PelanggaranController::class,'update']);
+
+
+
+
 
 
 route::get('/tambah_phg',[PenghargaanController::class,'tambahphg'])->name('tambahphg');
 Route::post('/phg/storephg',[PenghargaanController::class,'storephg']);
-Route::delete('/penghargaan/{id_penghargaan}',[PenghargaanController::class,'destroy1'])->name('destroy1');
+Route::delete('/penghargaan/{id_penghargaan}',[PenghargaanController::class,'destroy1'])->name('penghargaan.destroy1');
 Route::get('/penghargaan/{id_penghargaan}/edit_penghargaan',[PenghargaanController::class,'editphg']);
 Route::put('/penghargaan/{id_penghargaan}',[PenghargaanController::class,'updatephg']);
+
+
+
+
+
+route::get('/tambah_ketphg',[PenghargaanController::class,'tambahketphg'])->name('tambahketphg');
+Route::post('/ketphg/store',[PenghargaanController::class,'store']);
+Route::delete('/ketpenghargaan/{id_kategori_penghargaan}',[PenghargaanController::class,'destroy'])->name('ketpenghargaan.destroy');
+Route::get('/ketpenghargaan/{id_kategori_penghargaan}/edit_ketpenghargaan',[PenghargaanController::class,'edit']);
+Route::put('/ketpenghargaan/{id_kategori_penghargaan}',[PenghargaanController::class,'update']);
+
 
 
 
@@ -94,11 +116,6 @@ Route::put('/riwayat/{id_riwayat}',[RiwayatController::class,'updaterwt']);
 // route::get('/view',[PelanggaranController::class,'view'])->name('view');
 
 
-route::get('/tambah_ketplg',[PelanggaranController::class,'tambahketplg'])->name('tambahketplg');
-Route::post('/ketplg/store',[PelanggaranController::class,'store']);
-Route::delete('/ketpelanggaran/{id_kategori_pelanggaran}',[PelanggaranController::class,'destroy'])->name('destroy');
-Route::get('/ketpelanggaran/{id_kategori_pelanggaran}/edit_ketpelanggaran',[PelanggaranController::class,'edit']);
-Route::put('/ketpelanggaran/{id_kategori_pelanggaran}',[PelanggaranController::class,'update']);
 
 
 route::get('/tambah_ketpng',[PenangananController::class,'tambahketpng'])->name('tambahketpng');
@@ -116,19 +133,15 @@ Route::put('/ketriwayat/{id_kategori_riwayat}',[RiwayatController::class,'update
 
 
 
-route::get('/tambah_ketphg',[PenghargaanController::class,'tambahketphg'])->name('tambahketphg');
-Route::post('/ketphg/store',[PenghargaanController::class,'store']);
-Route::delete('/ketpenghargaan/{id_kategori_penghargaan}',[PenghargaanController::class,'destroy'])->name('destroy');
-Route::get('/ketpenghargaan/{id_kategori_penghargaan}/edit_ketpenghargaan',[PenghargaanController::class,'edit']);
-Route::put('/ketpenghargaan/{id_kategori_penghargaan}',[PenghargaanController::class,'update']);
-
 
 route::get('/tambah_siswa',[SiswaController::class,'tambahsiswa'])->name('tambahsiswa');
 Route::post('/siswa/store',[SiswaController::class,'store']);
-Route::delete('/siswa/{id_siswa}',[SiswaController::class,'destroy'])->name('destroy');
+Route::delete('/siswa/{id}', [SiswaController::class,'destroy'])->name('siswa.destroy');
 Route::get('/siswa/{id_siswa}/edit_siswa',[SiswaController::class,'edit']);
 Route::put('/siswa/{id_siswa}',[SiswaController::class,'update']);
 route::get('/siswa/search',[SiswaController::class,'search'])->name('search');
 route::get('/guru/search',[GuruController::class,'search'])->name('search');
 route::get('/siswa/viewimport',[SiswaController::class,'viewimport'])->name('viewimport');
+Route::get('/siswa/check-nisn/{nisn}', 'SiswaController@checkNISN');
+
 

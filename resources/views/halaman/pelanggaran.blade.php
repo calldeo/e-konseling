@@ -26,63 +26,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END: Head -->
     <body class="main">
         <!-- BEGIN: Mobile Menu -->
-        <div class="mobile-menu md:hidden">
-            <div class="mobile-menu-bar">
-                <a href="" class="flex mr-auto">
-                    <img alt="Midone - HTML Admin Template" class="w-6" src="{{asset('dashboards/dist/images/logo.svg')}}">
-                </a>
-                <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
-            </div>
-            <div class="scrollable">
-                <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="x-circle" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
-                <ul class="scrollable__content py-2">
-                    <li>
-                        <a href="javascript:;.html" class="menu menu--active">
-                            <div class="menu__icon"> <i data-lucide="home"></i> </div>
-                            <div class="menu__title"> Dashboard <i data-lucide="chevron-down" class="menu__sub-icon transform rotate-180"></i> </div>
-                        </a>
-                        <ul class="menu__sub-open">
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-1.html" class="menu menu--active">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 1 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 2 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-3.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 3 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-4.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 4 </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                   
-                   
-                
-                   
-                   
-                    
-                    
-                   
-                    
-                   
-                    
-                 
-                </ul>
-            </div>
-        </div>
+        @include('template.mobile')
         <!-- END: Mobile Menu -->
 
         
@@ -111,22 +55,20 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li>
                                             <a href="/tambah_plg" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Pelanggaran </a>
                                         </li>
-                                        <li>
-                                            <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </div>
                             <div class="hidden md:block mx-auto text-slate-500"></div>
                             <form action="" class="form-inline" method="GET">
-                                <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                                    
-                                    <div class="w-56 relative text-slate-500">
-                                        <input type="search" name="keyword" class="form-control w-56 box pr-10" placeholder="Search...">
-                                        <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
-                                    </div>
+                            <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                                
+                                <div class="w-56 relative text-slate-500">
+                                    <input type="search" name="search" class="form-control w-56 box pr-10" placeholder="Search...">
+                                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
                                 </div>
-                            </form>
+                            </div>
+                        </form>
                         </div>
                         <!-- BEGIN: Data List -->
                         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -137,7 +79,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <th class="text-center whitespace-nowrap">Nama Siswa</th>
                                         <th class="text-center whitespace-nowrap">Nama Pelanggaran</th>
                                         <th class="text-center whitespace-nowrap">Nama Guru</th>
-
                                         <th class="text-center whitespace-nowrap">Point</th>
                                         <th class="text-center whitespace-nowrap">Catatan</th>  
                                         <th class="text-center whitespace-nowrap">Waktu</th>                                       
@@ -162,19 +103,30 @@ License: You must have a valid license purchased only from themeforest(the above
                                     
                                     {{-- <td class="text-center">{{$g->password}}</td> --}}
 
-                                    <td class="table-report__action w-56">
+                                    <td class="table-report__action w-40">
                                         <div class="flex justify-center items-center">
-                                            <a class="flex items-center mr-3" href="/pelanggaran/{{ $da->id_pelanggaran }}/edit_pelanggaran"> <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-
-                                            <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
+                                            <a class="btn btn-primary" href="/pelanggaran/{{ $da->id_pelanggaran }}/edit_pelanggaran" >
+                                                <i data-lucide="edit" class="w-4 h-4 mr-1"></i>
+                                            </a>
+                                            
+                                            <form action="{{ route('pelanggaran.destroy1', $da->id_pelanggaran) }}" method="POST" class="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete-confirmation-modal-{{ $da->id_pelanggaran }}">
+                                                    <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
                              @endforeach
                             </tbody>
                                  
-                            {{ $data->links() }}
+                            
                             </table>
+                            <div class="my-5 ">
+                                {{$data ->links() }}
+                            </div>
                         </div>
                         <!-- END: Data List -->
                         <!-- BEGIN: Pagination -->
@@ -182,8 +134,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- END: Pagination -->
                     </div>
                     <!-- BEGIN: Delete Confirmation Modal --> 
-                    @foreach($data as $ket1)
-                    <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
+                    {{-- @foreach($data as $ket1) --}}
+                    {{-- <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body p-0">
@@ -197,7 +149,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                     <div class="px-5 pb-8 text-center">
-                                        <form action="/pelanggaran/{{ $ket1->id_pelanggaran }}" method="POST">
+                                        <form action="/pelanggaran/{{ $da->id_pelanggaran }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
@@ -208,8 +160,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    </div> --}}
+                {{-- @endforeach --}}
                     <!-- END: Delete Confirmation Modal -->
                 </div>
                 <!-- END: Content -->
@@ -224,6 +176,22 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: JS Assets-->
         @include('template.scricpt')
         @include('sweetalert::alert')
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var deleteForms = document.querySelectorAll('.delete-form');
+                var confirmationModal = document.getElementById('delete-confirmation-modal');
+                
+                deleteForms.forEach(function(form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var result = confirm('Are you sure you want to delete this record?');
+                        if (result) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        </script>
 
         <!-- END: JS Assets-->
     </body>

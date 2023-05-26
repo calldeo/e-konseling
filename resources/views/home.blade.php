@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--
 Template Name: Icewall - HTML Admin Dashboard Template
@@ -12,69 +11,13 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" class="light">
     <!-- BEGIN: Head -->
     <head>
-    @include('template.header')
+        @include('template.header')
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
     <body class="main">
         <!-- BEGIN: Mobile Menu -->
-        <div class="mobile-menu md:hidden">
-            <div class="mobile-menu-bar">
-                <a href="" class="flex mr-auto">
-                    <img alt="Midone - HTML Admin Template" class="w-6" src="{{asset('dashboards/dist/images/logo.svg')}}">
-                </a>
-                <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
-            </div>
-            <div class="scrollable">
-                <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="x-circle" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
-                <ul class="scrollable__content py-2">
-                    <li>
-                        <a href="javascript:;.html" class="menu menu--active">
-                            <div class="menu__icon"> <i data-lucide="home"></i> </div>
-                            <div class="menu__title"> Dashboard <i data-lucide="chevron-down" class="menu__sub-icon transform rotate-180"></i> </div>
-                        </a>
-                        <ul class="menu__sub-open">
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-1.html" class="menu menu--active">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 1 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 2 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-3.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 3 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-4.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 4 </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                   
-                   
-                
-                   
-                   
-                    
-                    
-                   
-                    
-                   
-                    
-                 
-                </ul>
-            </div>
-        </div>
+        @include('template.mobile')
         <!-- END: Mobile Menu -->
         <!-- BEGIN: Top Bar -->
         @include('template.topbar')
@@ -93,69 +36,147 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="col-span-12 mt-8">
                                     <div class="intro-y flex items-center h-10">
                                         <h2 class="text-lg font-medium truncate mr-5">
-                                            General Report
+                                            Dashboard
                                         </h2>
                                         <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
+                                    </div>
+
+                           <!-- BEGIN: Top 10 Siswa Pelanggaran -->
+                                <div class="col-span-12 mt-5">
+                                    <div class="intro-y flex items-center h-10">
+                                        <h2 class="text-lg font-medium truncate mr-5">
+                                            Top 10 Siswa Pelanggaran Terbanyak
+                                        </h2>
+                                    </div>
+                                    <div class="grid grid-cols-12 gap-6 mt-5">
+                                        <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                            <div class="report-box zoom-in">
+                                                <div class="box p-5">
+                                                    <div class="flex items-center">
+                                                        <i data-lucide="user" class="report-box__icon text-primary"></i> 
+                                                        <div class="ml-auto">
+                                                            <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total Pelanggaran"> {{$siswaPelanggaran->sum('total_pelanggaran')}} </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-base font-medium leading-2 mt-1">
+                                                        <a href="javascript:;" class="toggle-siswa-pelanggaran">Lihat Siswa</a>
+                                                    </div>
+                                                    <div class="text-base text-slate-500 mt-5">Pelanggaran</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-12 siswa-pelanggaran hidden">
+                                            @foreach ($siswaPelanggaran as $siswa)
+                                            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                                <div class="report-box zoom-in small">
+                                                    <div class="box p-3">
+                                                        <div class="text-base font-medium leading-2 mt-1">{{$siswa->nama}}</div>
+                                                        <div class="text-base text-slate-500 mt-1">Total Pelanggaran: {{$siswa->total_pelanggaran}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!-- END: Top 10 Siswa Pelanggaran -->
+                                <div class="col-span-12 mt-5">
+                                    <div class="intro-y flex items-center h-10">
+                                        <h2 class="text-lg font-medium truncate mr-5">
+                                            Top 10 Siswa Penghargaan Terbanyak
+                                        </h2>
                                     </div>
                                     <div class="grid grid-cols-12 gap-6 mt-5">
                                         <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                                             <div class="report-box zoom-in">
                                                 <div class="box p-5">
                                                     <div class="flex">
-                                                        <i data-lucide="shopping-cart" class="report-box__icon text-primary"></i> 
+                                                        <i data-lucide="award" class="report-box__icon text-primary"></i> 
                                                         <div class="ml-auto">
-                                                            <div class="report-box__indicator bg-success tooltip cursor-pointer" title="33% Higher than last month"> 33% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                                            <div class="report-box__indicator bg-primary tooltip cursor-pointer" title="Total Penghargaan"> {{$siswaPenghargaan->sum('total_penghargaan')}} </div>
                                                         </div>
                                                     </div>
-                                                    <div class="text-3xl font-medium leading-8 mt-6">4.710</div>
-                                                    <div class="text-base text-slate-500 mt-1">Pelanggaran</div>
+                                                    <div class="text-base font-medium leading-2 mt-1">
+                                                        <a href="javascript:;" class="toggle-siswa-penghargaan">Lihat Siswa</a>
+                                                    </div>
+                                                    <div class="text-base text-slate-500 mt-5">Penghargaan</div>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        
-                                        
+                                        <div class="col-span-12 siswa-penghargaan hidden">
+                                            @foreach ($siswaPenghargaan as $siswa)
+                                            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                                                <div class="report-box zoom-in small">
+                                                    <div class="box p-3">
+                                                        <div class="text-base font-medium leading-2 mt-1">{{$siswa->nama}}</div>
+                                                        <div class="text-base text-slate-500 mt-1">Total Penghargaan: {{$siswa->total_penghargaan}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                                 
-
-                                
+                                    </div>
+                                </div>
                                 <!-- END: General Report -->
                                 <!-- BEGIN: Sales Report -->
-                                
+
                                 <!-- END: Sales Report -->
                                 <!-- BEGIN: Weekly Top Seller -->
-                              
+
                                 <!-- END: Weekly Top Seller -->
                                 <!-- BEGIN: Sales Report -->
-                                
+
                                 <!-- END: Sales Report -->
                                 <!-- BEGIN: Official Store -->
-                                
+
                                 <!-- END: Official Store -->
                                 <!-- BEGIN: Weekly Best Sellers -->
-                            
+
                                 <!-- END: Weekly Best Sellers -->
                                 <!-- BEGIN: General Report -->
-                                
+
                                 <!-- END: General Report -->
                                 <!-- BEGIN: Weekly Top Products -->
-                                
+
                                 <!-- END: Weekly Top Products -->
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <!-- END: Content -->
             </div>
         </div>
         <!-- BEGIN: Dark Mode Switcher-->
-       
+
         <!-- END: Dark Mode Switcher-->
-        
+
         <!-- BEGIN: JS Assets-->
-      @include('template.scricpt')
+        @include('template.scricpt')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const toggleSiswaPelanggaran = document.querySelector('.toggle-siswa-pelanggaran');
+                const siswaPelanggaran = document.querySelector('.siswa-pelanggaran');
+        
+                toggleSiswaPelanggaran.addEventListener('click', function() {
+                    siswaPelanggaran.classList.toggle('hidden');
+                });
+            });
+              document.addEventListener('DOMContentLoaded', function() {
+                const toggleSiswaPenghargaan = document.querySelector('.toggle-siswa-penghargaan');
+                const siswaPenghargaan = document.querySelector('.siswa-penghargaan');
+        
+                toggleSiswaPenghargaan.addEventListener('click', function() {
+                    siswaPenghargaan.classList.toggle('hidden');
+                });
+            });
+        </script>
+         {{-- <script>
+          
+        </script> --}}
         <!-- END: JS Assets-->
     </body>
 </html>

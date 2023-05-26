@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\API\ApiFormatter;
+use App\Http\Resources\PenghargaanSiswaCollection;
 use App\Models\KetPenghargaan;
 use DB;
 use Illuminate\Http\Request;
@@ -13,12 +14,14 @@ use App\Models\Penghargaan;
 class PenghargaanController extends Controller
 {
     public function penghargaan(Request $request)
-    {
-        $keyword=$request->keyword;
-        $data = Penghargaan::where('id_kategori_penghargaan','LIKE','%'.$request->search.'%')->Paginate(5);
-        return view('halaman.penghargaan', compact('data'));
+    {  $search = $request->search;
+        $data = Penghargaan::whereHas('siswa', function ($query) use ($search) {
+                $query->where('nama', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
+        $data->appends(['search' => $search]);
+        return view('halaman.penghargaan', compact('data', 'search'));
     }
-
     public function ketpenghargaan(Request $request)
     {
         $search=$request->search;
@@ -86,6 +89,7 @@ class PenghargaanController extends Controller
             'id' => 'required',
             'point' => 'required',
             'catatan' => 'required',
+            'waktu'=> 'required'
         ]);
         // dd($data);
         Penghargaan::create($data);
@@ -116,7 +120,8 @@ class PenghargaanController extends Controller
             'id_siswa' => 'required',
             'id' => 'required',
             'point' => 'required',
-            'catatan' => 'required'
+            'catatan' => 'required',
+            'waktu'  => 'required',
             
         ]);
         $penghargaan = Penghargaan::where('id_penghargaan', $id_penghargaan)->first();
@@ -128,23 +133,31 @@ class PenghargaanController extends Controller
     {
         $ket1 = Penghargaan::find($id_penghargaan);
         $ket1->delete();
-        return redirect('/ketpenghargaan')->with('toast_success', 'Data Berhasil Dihapus');;
+        return redirect('/penghargaan')->with('toast_success', 'Data Berhasil Dihapus');;
     }
 
 
-    public function show($id_siswa)
+    public function show()
     {
         // $pelanggaran=pelanggaran::all();
         // return response()->json($pelanggaran);
-      // username
-      // password
-      // cek di db 
-      // kalo username sapa passwordnya benar nampiling smua datanya
-      $data = Penghargaan::where('id_siswa','=',$id_siswa)->get();
-        if($data){
-            return ApiFormatter::createApi(200, 'Succes',$data);
-        }else{
-            return ApiFormatter::createApi(400, 'Gagal');
-        }   
-     }
+        // username
+        // password
+        // cek di db 
+        // kalo username sapa passwordnya benar nampiling smua datanya
+        $data = PenghargaanSiswaCollection ::collection(Penghargaan::with(['ketpenghargaan', 'siswa'])->get());
+        if ($data) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil mengambil data',
+                'data_penghargaan' => $data
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil data',
+                'data_penghargaan' => null
+            ]);
+        }
+    }
 }

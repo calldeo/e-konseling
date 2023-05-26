@@ -10,7 +10,7 @@
                 </div>
             </a>
         </li>
-        @if (auth()->user()->level=="admin")
+        @if (auth()->user()->level=="guru")
         <li>
            
                 
@@ -25,7 +25,7 @@
            
         </li>
         @endif
-        @if (auth()->user()->level=="admin")
+        @if (auth()->user()->level=="guru")
         <li>
             <a href="/guru" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="user"></i> </div>

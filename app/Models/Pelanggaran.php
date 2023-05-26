@@ -38,6 +38,7 @@ class Pelanggaran extends Authenticatable
         'catatan',
         'waktu',
         
+        
     ];
 
     /**

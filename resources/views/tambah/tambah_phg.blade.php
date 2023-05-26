@@ -25,63 +25,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END: Head -->
     <body class="main">
         <!-- BEGIN: Mobile Menu -->
-        <div class="mobile-menu md:hidden">
-            <div class="mobile-menu-bar">
-                <a href="" class="flex mr-auto">
-                    <img alt="Midone - HTML Admin Template" class="w-6" src="{{asset('dashboards/dist/images/logo.svg')}}">
-                </a>
-                <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
-            </div>
-            <div class="scrollable">
-                <a href="javascript:;" class="mobile-menu-toggler"> <i data-lucide="x-circle" class="w-8 h-8 text-white transform -rotate-90"></i> </a>
-                <ul class="scrollable__content py-2">
-                    <li>
-                        <a href="javascript:;.html" class="menu menu--active">
-                            <div class="menu__icon"> <i data-lucide="home"></i> </div>
-                            <div class="menu__title"> Dashboard <i data-lucide="chevron-down" class="menu__sub-icon transform rotate-180"></i> </div>
-                        </a>
-                        <ul class="menu__sub-open">
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-1.html" class="menu menu--active">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 1 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 2 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-3.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 3 </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="side-menu-light-dashboard-overview-4.html" class="menu">
-                                    <div class="menu__icon"> <i data-lucide="activity"></i> </div>
-                                    <div class="menu__title"> Overview 4 </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                   
-                   
-                
-                   
-                   
-                    
-                    
-                   
-                    
-                   
-                    
-                 
-                </ul>
-            </div>
-        </div>
+        @include('template.mobile')
         <!-- END: Mobile Menu -->
 
         
@@ -109,6 +53,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div  >
                                         <select class="tom-select w-full" name="id_siswa" required>
                                             @foreach ($siswa as $ket)
+                                            <option  value="">--PILIH SISWA--</option>
                                             <option value="{{ $ket->id_siswa }}">{{ $ket->nama }}</option>
                                             
                                         @endforeach
@@ -123,6 +68,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <select class="tom-select w-full"  onchange="getPoint(this)" name="id_kategori_penghargaan" required>
                                             {{-- <option value="">Pilih Kategori Pelanggaran</option> --}}
                                             @foreach ($penghargaan as $phg)
+                                            <option  value="">--PILIH PENGHARGAAN--</option>
                                             <option value="{{ $phg->id_kategori_penghargaan}}">{{ $phg->kategori_penghargaan }}</option>
                                             
                                         @endforeach
@@ -157,6 +103,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
                                     <input type="text" name="point" id="point" class="form-control" >
+                                </div>
+                                <div class="mb-5">
+                                    <label for="point" class="form-label">Waktu</label>
+                                    <input type="datetime-local" name="waktu" class="form-control">
                                 </div>
 
                                 

@@ -29,7 +29,7 @@ class GuruController extends Controller
 
     public function guru(Request $request){
         $search=$request->search; 
-        $guru = DB::table('users')->where('name','LIKE','%'.$request->search.'%')->Paginate(5);
+        $guru = DB::table('users')->where('name','LIKE','%'.$request->search.'%')->Paginate(10);
         return view('halaman.guru',['users' => $guru],['search'=>$search]);
     }
     public function tambahguru(){
