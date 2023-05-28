@@ -81,6 +81,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <tr>
                                         {{-- <th class="text-center whitespace-nowrap">No</th> --}}
                                         {{-- <th class="text-center whitespace-nowrap"><input type="checkbox"></th> --}}
+                                        {{-- <th class="text-center whitespace-nowrap"> </th> --}}
+
                                         <th class="text-center whitespace-nowrap">NISN </th>
                                         <th class="text-center whitespace-nowrap">Nama</th>
                                         <th class="text-center whitespace-nowrap">Kelas</th>
@@ -97,6 +99,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                  @foreach($data as $ss)
                                         {{-- <td  class="text-center">{{$ss->id_siswa}}</td> --}}
                                         {{-- <td><input type="checkbox"></td> --}}
+                                        {{-- <td class="text-center">
+                                            <input type="checkbox" name="selected_students[]" value="{{$ss->id_siswa}}">
+                                          </td> --}}
                                         <td  class="text-center">{{$ss->nisn}}</td>
                                         <td class="text-center">{{$ss->nama}}</td>
                                         <td class="text-center">{{$ss->kelas}}</td>
@@ -116,10 +121,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
                                                     </button>
                                                 </form>
+                                                
                                             </div>
                                         </td>
                                     </tr>
                                  @endforeach
+
+                                
                                 </tbody>
                                 
                             </table>

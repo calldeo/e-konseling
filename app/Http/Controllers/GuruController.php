@@ -16,20 +16,20 @@ class GuruController extends Controller
 
     public function guruimportexcel(Request $request) {
 
-        DB::table('users')->where('level','guru')->delete();
-
+        // DB::table('users')->where('level','guru')->delete();
+        User::query()->where('level','guru')->delete();
         $file=$request->file('file');
         $namafile = $file->getClientOriginalName();
         $file->move('DataGuru', $namafile);
 
         Excel::import(new UserImport, public_path('/DataGuru/'.$namafile));
-        return redirect('/guru')->with('toast_success', 'Data Berhasil Ditambahkan');;
+        return redirect('/login')->with('toast_success', 'Data Berhasil Ditambahkan');
         
     }
 
     public function guru(Request $request){
         $search=$request->search; 
-        $guru = DB::table('users')->where('name','LIKE','%'.$request->search.'%')->Paginate(10);
+        $guru = User::where('name','LIKE','%'.$request->search.'%')->Paginate(10);
         return view('halaman.guru',['users' => $guru],['search'=>$search]);
     }
     public function tambahguru(){
@@ -39,7 +39,7 @@ class GuruController extends Controller
         {     $data = $request->validate([
             'name' => ['required','min:3','max:30'],
             'level' => 'required',
-            'email' => 'required|unique:tb_siswa,email',
+            'email' => 'required|unique:users,email',
             'password' => ['required','min:8','max:12'],
             
             

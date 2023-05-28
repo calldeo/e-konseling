@@ -42,6 +42,9 @@ route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 route::post('/importguru',[GuruController::class,'guruimportexcel'])->name('guruimportexcel');
 route::post('/importsiswa',[SiswaController::class,'siswaimportexcel'])->name('siswaimportexcel');
+route::get('/exportplg',[PelanggaranController::class,'exportPelanggaran'])->name('exportPelanggaran');
+route::get('/exportphg',[PenghargaanController::class,'exportPenghargaan'])->name('exportPenghargaan');
+
 
 
 route::get('/pelanggaran',[PelanggaranController::class,'pelanggaran'])->name('pelanggaran');
@@ -107,11 +110,11 @@ Route::put('/ketpenghargaan/{id_kategori_penghargaan}',[PenghargaanController::c
 
 
 
-route::get('/tambah_riwayat',[RiwayatController::class,'tambahrwt'])->name('tambahrwt');
-Route::post('/rwt/storerwt',[RiwayatController::class,'storerwt']);
-Route::delete('/riwayat/{id_riwayat}',[RiwayatController::class,'destroy1'])->name('destroy1');
-Route::get('/riwayat/{id_riwayat}/edit_riwayat',[RiwayatController::class,'editrwt']);
-Route::put('/riwayat/{id_riwayat}',[RiwayatController::class,'updaterwt']);
+// route::get('/tambah_riwayat',[RiwayatController::class,'tambahrwt'])->name('tambahrwt');
+// Route::post('/rwt/storerwt',[RiwayatController::class,'storerwt']);
+// Route::delete('/riwayat/{id_riwayat}',[RiwayatController::class,'destroy1'])->name('destroy1');
+// Route::get('/riwayat/{id_riwayat}/edit_riwayat',[RiwayatController::class,'editrwt']);
+// Route::put('/riwayat/{id_riwayat}',[RiwayatController::class,'updaterwt']);
 
 // route::get('/view',[PelanggaranController::class,'view'])->name('view');
 
@@ -120,9 +123,18 @@ Route::put('/riwayat/{id_riwayat}',[RiwayatController::class,'updaterwt']);
 
 route::get('/tambah_ketpng',[PenangananController::class,'tambahketpng'])->name('tambahketpng');
 Route::post('/ketpng/store',[PenangananController::class,'store']);
-Route::delete('/ketpenanganan/{id_kategori_penanganan}',[PenangananController::class,'destroy'])->name('destroy');
+Route::delete('/ketpenanganan/{id_kategori_penanganan}',[PenangananController::class,'destroy'])->name('ketpenanganan.destroy');
 Route::get('/ketpenanganan/{id_kategori_penanganan}/edit_ketpenanganan',[PenangananController::class,'edit']);
 Route::put('/ketpenanganan/{id_kategori_penanganan}',[PenangananController::class,'update']);
+route::get('/tambah_penanganan',[PenangananController::class,'tambahpng'])->name('tambahpng');
+// Route::post('storepng',[PenangananController::class,'storepng']);
+Route::post('/store-penanganan', [PenangananController::class, 'storepng'])->name('storepng');
+// routes/web.php
+
+
+
+
+
 
 
 route::get('/tambah_ketrwt',[RiwayatController::class,'tambahketrwt'])->name('tambahketrwt');
@@ -143,5 +155,7 @@ route::get('/siswa/search',[SiswaController::class,'search'])->name('search');
 route::get('/guru/search',[GuruController::class,'search'])->name('search');
 route::get('/siswa/viewimport',[SiswaController::class,'viewimport'])->name('viewimport');
 Route::get('/siswa/check-nisn/{nisn}', 'SiswaController@checkNISN');
+Route::delete('/deleteSelected', [SiswaController::class, 'deleteSelected'])->name('deleteSelected');
+
 
 

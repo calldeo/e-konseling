@@ -78,7 +78,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 @error('id_kategori_penghargaan')
                                         <p>{{$message}}</p>
                                     @enderror
-                                <div  class="mb-5">
+                                {{-- <div  class="mb-5">
                                     <label for="name" class="form-label">Nama Guru</label>
                                     <div  >
                                         <select class="tom-select w-full" name="id" required>
@@ -92,7 +92,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     @error('id')
                                         <p>{{$message}}</p>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Catatan</label>
                                     <input type="text" name="catatan" class="form-control">
@@ -102,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     @enderror
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control" >
+                                    <input type="text" name="point" id="point" class="form-control" readonly>
                                 </div>
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Waktu</label>

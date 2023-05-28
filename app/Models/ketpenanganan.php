@@ -29,7 +29,6 @@ class ketpenanganan extends Authenticatable
      */
     protected $fillable = [
         'nama_kategori_penanganan',
-        
         'catatan',
         
     ];

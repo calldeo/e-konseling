@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Icewall admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Icewall Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>Guru - Si Beka</title>
+    <title>Pelanggaran - Si Beka</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('dashboards/dist/css/app.css')}}" />
     <head>
@@ -77,27 +77,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                 @error('id_kategori_pelanggaran')
                                         <p>{{$message}}</p>
                                     @enderror
-                                <div  class="mb-5">
-                                    <label for="name" class="form-label">Nama Guru</label>
-                                    <div  >
-                                        <select class="tom-select w-full" name="id" required>
-                                            @foreach ($guru as $item)
-                                            <option  value="">--PILIH GURU--</option>
-
-                                            <option value="{{ $item->id}}">{{ $item->name }}</option>
-                                            
-                                        @endforeach
-                                        </select >
-                                    </div>
-                                    @error('id')
-                                        <p>{{$message}}</p>
-                                    @enderror
-                                </div>
+                                
                               
-                                <div class="mb-5">
-                                    <label for="point" class="form-label">Point</label>
-                                    <input type="text" name="point" id="point" class="form-control" >
-                                </div>
+                              
                                 <div class="mb-5">
                                     <label for="point" class="form-label">Catatan</label>
                                     <input type="text" name="catatan" class="form-control">
@@ -105,6 +87,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                 @error('catatan')
                                         <p>{{$message}}</p>
                                     @enderror
+                                    <div class="mb-5">
+                                        <label for="point" class="form-label">Point</label>
+                                        <input type="text" name="point" id="point" class="form-control" readonly>
+                                    </div>
                                     <div class="mb-5">
                                         <label for="point" class="form-label">Waktu</label>
                                         <input type="datetime-local" name="waktu" class="form-control">

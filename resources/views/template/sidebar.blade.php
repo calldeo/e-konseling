@@ -10,7 +10,7 @@
                 </div>
             </a>
         </li>
-        @if (auth()->user()->level=="guru")
+        @if (auth()->user()->level == "admin")
         <li>
            
                 
@@ -25,7 +25,7 @@
            
         </li>
         @endif
-        @if (auth()->user()->level=="guru")
+        @if ( auth()->user()->level == "admin")
         <li>
             <a href="/guru" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="user"></i> </div>
@@ -38,7 +38,7 @@
         @endif
        
 
-        @if (auth()->user()->level=="guru")
+        @if (auth()->user()->level=="guru"|| auth()->user()->level == "admin")
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="message-square"></i> </div>
@@ -65,7 +65,7 @@
         </li>
         @endif
         
-        @if (auth()->user()->level=="guru")
+        @if (auth()->user()->level=="guru"|| auth()->user()->level == "admin")
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="award"></i> </div>
@@ -122,7 +122,7 @@
 
 
 
-        @if (auth()->user()->level=="guru")
+        @if (auth()->user()->level=="guru"|| auth()->user()->level == "admin")
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-lucide="trello"></i> </div>

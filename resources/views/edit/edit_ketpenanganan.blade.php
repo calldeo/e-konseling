@@ -41,27 +41,24 @@
             <div class="content">
                 <div class="intro-y flex items-center mt-8">
                     <h2 class="text-lg font-medium mr-auto">
-                        Edit Guru
+                        Edit Penanganan
                     </h2>
                 </div>
                 <div class="grid grid-cols-12 gap-6 mt-5">
                     <div class="intro-y col-span-12 lg:col-span-12">
                         <!-- BEGIN: Form Layout -->
-                        <form action="/ketpenghargaan/{{ $ket->id_kategori_penghargaan}}" method="POST" enctype="multipart/form-data">
+                        <form action="/ketpenanganan/{{ $ket->id_kategori_penanganan }}" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nama Penghargaan</label>
-                                <input type="text" name="kategori_penghargaan" class="form-control" value="{{ $ket->kategori_penghargaan }}">
+                                <label for="name" class="form-label">Nama Penanganan</label>
+                                <input type="text" name="nama_kategori_penanganan" class="form-control" value="{{ $ket->nama_kategori_penanganan }}">
                             </div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Deskripsi Penghargaan</label>
-                                <input type="text" name="deskripsi_penghargaan" class="form-control" value="{{ $ket->deskripsi_penghargaan}}">
+                                <label for="name" class="form-label">Catatan</label>
+                                <input type="text" name="catatan" class="form-control" value="{{ $ket->catatan }}">
                             </div>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Point</label>
-                                <input type="text" name="point" class="form-control" value="{{ $ket->point }}">
-                            </div>
+                           
                            
                             <input type="submit" name="submit" class="btn btn-info" value="Update">
                             
@@ -72,7 +69,7 @@
             </div>
             <!-- END: Content -->
         </div>
-        @include('sweetalert::alert')
+            @include('sweetalert::alert')
         
         @include('template.scricpt')
     </div> 

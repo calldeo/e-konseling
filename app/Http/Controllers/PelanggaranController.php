@@ -4,18 +4,28 @@ namespace App\Http\Controllers;
 
 use App\API\ApiFormatter;
 use App\Http\Resources\PelanggaranSiswaCollection;
+use App\Imports\PelanggaranExport;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\KetPelanggaran;
 use App\Models\guru;
 use App\Models\Pelanggaran;
 use App\Models\PelanggaranAPImodel;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PelanggaranController extends Controller
 {
+
+    public function exportPelanggaran()
+{
+    // return Pelanggaran::with('siswa','ketpelanggaran','user')->get();
+    return Excel::download(new PelanggaranExport(), 'pelanggaran.xlsx');
+}
+
     public function pelanggaran(Request $request)
     {
         $search = $request->search;
@@ -31,7 +41,7 @@ class PelanggaranController extends Controller
     public function ketpelanggaran(Request $request)
     {
         $search=$request->search;
-        $ket = DB::table('tb_kategori_pelanggaran')->where('kategori_pelanggaran','LIKE','%'.$request->search.'%')->Paginate(5);
+        $ket = DB::table('tb_kategori_pelanggaran')->where('kategori_pelanggaran','LIKE','%'.$request->search.'%')->Paginate(10);
         return view('halaman.ketpelanggaran', ['ketpelanggaran' => $ket],['search'=>$search]);
     }
     public function tambahketplg()
@@ -39,7 +49,16 @@ class PelanggaranController extends Controller
         return view('tambah.tambah_ketplg');
     }
     public function store(Request $request)
-    {
+    { $request->validate([
+        'kategori_pelanggaran' => ['required', 'min:5', 'max:30'],
+        'deskripsi_pelanggaran'=> ['required', 'min:5', 'max:30'],
+        'point' => ['required', 'min:5', 'max:30','number'],
+        
+        // 'password_confirmation' => 'required|same:password',
+    ]);
+
+    // try {
+      
 
         DB::table('tb_kategori_pelanggaran')->insert([
             'kategori_pelanggaran' => $request->kategori_pelanggaran,
@@ -67,7 +86,14 @@ class PelanggaranController extends Controller
     }
 
     public function update(Request $request, $id_kategori_pelanggaran)
-    {
+    {$request->validate([
+        'kategori_pelanggaran' => ['required', 'min:5', 'max:30'],
+        'deskripsi_pelanggaran'=> ['required', 'min:5', 'max:30'],
+        'point' => ['required', 'min:5', 'max:30','number'],
+        
+        // 'password_confirmation' => 'required|same:password',
+    ]);
+
         DB::table('tb_kategori_pelanggaran')->where('id_kategori_pelanggaran', $request->id_kategori_pelanggaran)->update([
             'kategori_pelanggaran' => $request->kategori_pelanggaran,
             'deskripsi_pelanggaran' => $request->deskripsi_pelanggaran,
@@ -89,7 +115,7 @@ class PelanggaranController extends Controller
         $guru = Guru::find($guruId);
     
         // Mendapatkan data siswa
-        $siswa = DB::table('tb_siswa')->get();
+        $siswa = Siswa::all();
     
         // Mendapatkan data pelanggaran
         $pelanggaran = DB::table('tb_kategori_pelanggaran')->get();
@@ -121,9 +147,17 @@ class PelanggaranController extends Controller
     
     public function editplg($id_pelanggaran)  ///EDIT
     {
-        $siswa = DB::table('tb_siswa')->get();
-        $pelanggaran = DB::table('tb_kategori_pelanggaran')->get();
-        $guru = User::where('level', 'guru')->get();
+      // Mendapatkan ID guru yang sedang login
+      $guruId = Auth::id();
+    
+      // Mendapatkan informasi guru berdasarkan ID
+      $guru = Guru::find($guruId);
+  
+      // Mendapatkan data siswa
+      $siswa = Siswa::all();
+  
+      // Mendapatkan data pelanggaran
+      $pelanggaran = DB::table('tb_kategori_pelanggaran')->get();
         return view('edit.edit_pelanggaran', compact('id_pelanggaran','siswa', 'pelanggaran', 'guru'));
         // $pelanggaran = KetPelanggaran::find($id_pelanggaran);
         // return view('edit.edit_pelanggaran', compact(['pelanggaran']));
@@ -131,16 +165,17 @@ class PelanggaranController extends Controller
 
     public function updateplg(Request $request, $id_pelanggaran)
     {
-        
+        $guruId = Auth::id();
         $data = $request->validate([
             'id_kategori_pelanggaran' => 'required',
             'id_siswa' => 'required',
-            'id' => 'required',
+            
             'point' => 'required',
             'catatan' => 'required',
             'waktu' => 'required'
             
         ]);
+        $data['id'] = $guruId;
         $pelanggaran = Pelanggaran::where('id_pelanggaran', $id_pelanggaran)->first();
         $pelanggaran->update($data);
         return redirect('/pelanggaran')->with('toast_success', 'Data Berhasil Diupdate');
@@ -153,6 +188,7 @@ class PelanggaranController extends Controller
         
         // Delete the record
         $siswa->delete();
+        Pelanggaran::where('id_siswa',$id)->delete();
         
         // Redirect to the index page with a success message
         return redirect()->route('pelanggaran')->with('toast_success', 'Data Berhasil Dihapus');

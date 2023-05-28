@@ -4,15 +4,26 @@ namespace App\Http\Controllers;
 
 use App\API\ApiFormatter;
 use App\Http\Resources\PenghargaanSiswaCollection;
+use App\Imports\PenghargaanExport;
+use App\Models\Guru;
 use App\Models\KetPenghargaan;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Penghargaan;
-
+use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenghargaanController extends Controller
 {
+    
+    public function exportPenghargaan()
+   {
+                // return Pelanggaran::with('siswa','ketpelanggaran','user')->get();
+    return Excel::download(new PenghargaanExport(), 'penghargaan.xlsx');
+   }
+
     public function penghargaan(Request $request)
     {  $search = $request->search;
         $data = Penghargaan::whereHas('siswa', function ($query) use ($search) {
@@ -36,6 +47,13 @@ class PenghargaanController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'kategori_penghargaan' => ['required', 'min:5', 'max:30'],
+            'deskripsi_penghargaan'=> ['required', 'min:5', 'max:30'],
+            'point' => ['required', 'min:5', 'max:30','number'],
+            
+            // 'password_confirmation' => 'required|same:password',
+        ]);
         DB::table('tb_kategori_penghargaan')->insert([
             'kategori_penghargaan' => $request->kategori_penghargaan,
             'deskripsi_penghargaan' => $request->deskripsi_penghargaan,
@@ -63,6 +81,13 @@ class PenghargaanController extends Controller
 
     public function update(Request $request, $id_kategori_pelanggaran)
     {
+        $request->validate([
+            'kategori_penghargaan' => ['required', 'min:5', 'max:30'],
+            'deskripsi_penghargaan'=> ['required', 'min:5', 'max:30'],
+            'point' => ['required', 'min:5', 'max:30','number'],
+            
+            // 'password_confirmation' => 'required|same:password',
+        ]);
         DB::table('tb_kategori_penghargaan')->where('id_kategori_penghargaan', $request->id_kategori_penghargaan)->update([
             'kategori_penghargaan' => $request->kategori_penghargaan,
             'deskripsi_penghargaan' => $request->deskripsi_penghargaan,
@@ -75,22 +100,32 @@ class PenghargaanController extends Controller
 
 
     public function tambahphg()
-    {
-        $siswa = DB::table('tb_siswa')->get();
+    {   // Mendapatkan ID guru yang sedang login
+        $guruId = Auth::id();
+    
+        // Mendapatkan informasi guru berdasarkan ID
+        $guru = Guru::find($guruId);
+    
+        // Mendapatkan data siswa
+        $siswa = Siswa::all();
+    
+        // Mendapatkan data pelanggaran
         $penghargaan = DB::table('tb_kategori_penghargaan')->get();
-        $guru = User::where('level', 'guru')->get();
+    
+        // Menampilkan view tambah pelanggaran dengan data siswa, pelanggaran, dan guru
         return view('tambah.tambah_phg', compact('siswa', 'penghargaan', 'guru'));
     }
     public function storephg(Request $request)
     {
+        $guruId = Auth::id();
         $data = $request->validate([
             'id_kategori_penghargaan' => 'required',
             'id_siswa' => 'required',
-            'id' => 'required',
             'point' => 'required',
             'catatan' => 'required',
             'waktu'=> 'required'
         ]);
+        $data['id'] = $guruId;
         // dd($data);
         Penghargaan::create($data);
         // DB::table('tb_pelanggaran')->insert([
@@ -104,7 +139,7 @@ class PenghargaanController extends Controller
     }
     public function editphg($id_penghargaan)  ///EDIT
     {
-        $siswa = DB::table('tb_siswa')->get();
+        $siswa = Siswa::all();
         $penghargaan = DB::table('tb_kategori_penghargaan')->get();
         $guru = User::where('level', 'guru')->get();
         return view('edit.edit_penghargaan', compact('id_penghargaan','siswa', 'penghargaan', 'guru'));

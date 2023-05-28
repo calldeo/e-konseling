@@ -45,56 +45,54 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <div class="intro-y col-span-12 lg:col-span-12">
                             <!-- BEGIN: Form Layout -->
-                            <form action="{{ route('penanganan.store') }}" method="POST">
+                            <form action="{{ route('storepng') }}" method="POST">
                                 @csrf
                                
                                 <div  class="mb-5">
-                                    <label for="siswa_id">Siswa</label>
-                                    <select name="id_siswa" id="id_siswa" class="form-control">
-                                        @foreach($dataSiswa as $siswa)
-                                            <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
+                                    <label for="id_pelanggaran">ID Pelanggaran</label>
+                                    <select name="id_kategori_pelanggaran" class="form-control">
+                                        @foreach ($pelanggaran as $item)
+                                            
+                                                <option value="{{ $item->id_pelanggaran }}">{{ $item->kategori_pelanggaran }}</option>
+                                          
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div  class="mb-5">
-                                <label for="pelanggaran_id">Pelanggaran:</label>
-                                <select name="id_pelanggaran" id="id_pelanggaran" class="form-control">
-                                    @foreach($dataPelanggaran as $pelanggaran)
-                                        <option value="{{ $pelanggaran->id }}">{{ $pelanggaran->nama }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                                <div  class="mb-5">
-                                    <label for="guru_id">Guru</label>
-                                    <select name="id" id="id" class="form-control">
-                                        @foreach($dataGuru as $guru)
-                                            <option value="{{ $guru->id }}">{{ $guru->nama }}</option>
+                                    <label for="id_siswa"> Siswa</label>
+                                    <select name="id_siswa" class="form-control">
+                                        @foreach ($pelanggaran as $item)
+                                            <option value="{{ $item->id_siswa }}">{{ $item->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                @error('id')
-                                        <p>{{$message}}</p>
-                                    @enderror
+
+                               
                                 <div class="mb-5">
                                     <label for="status">Status:</label>
                                     <input type="text" name="status" id="status" class="form-control">
                                 </div>
                                 
-                                @error('status')
-                                        <p>{{$message}}</p>
-                                    @enderror
-
-                                    <div class="mb-5">
-                                        <label for="tindak_lanjut">Tindak Lanjut:</label>
-                                         <textarea name="tindak_lanjut" id="tindak_lanjut" class="form-control"></textarea>
-                                    </div>
                                 <div class="mb-5">
-                                    <label for="total_point">Total Point:</label>
-                                    <input type="text" name="total_point" id="total_point" class="form-control" value="{{ $totalPoint }}" readonly>
+                                    <label for="tindak_lanjut">Tindak Lanjut:</label>
+                                    <textarea name="tindak_lanjut" id="tindak_lanjut" class="form-control"></textarea>
                                 </div>
 
+                                <div class="mb-5">
+                                    <label for="point">Point</label>
+                                    <input type="number" name="point" class="form-control" readonly>
+                                </div>
                                 
+                                {{-- <div class="mb-5">
+                                    <label for="id_kategori_penanganan">ID Kategori Penanganan</label>
+                                    <select name="id_kategori_penanganan" class="form-control">
+                                        @foreach ($guru as $item)
+                                            <option value="{{ $item->id_kategori_penanganan }}">{{ $item->kategori_penanganan }}</option>
+                                        @endforeach
+                                    </select>
+                                </div> --}}
+                               
                                 <button type="submit" name="submit" class="btn btn-info">Simpan</button>
                             
                             </form>

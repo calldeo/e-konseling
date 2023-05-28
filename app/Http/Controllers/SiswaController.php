@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\API\ApiFormatter;
 use App\Imports\UserImport;
 use App\Imports\SiswaImport;
-
+use App\Models\Pelanggaran;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
@@ -19,10 +19,23 @@ use PhpParser\Node\Expr;
 
 class SiswaController extends Controller
 {
+    public function deleteSelected(Request $request)
+    {
+        // Ambil id siswa yang dipilih dari input form
+        $selectedIds = $request->input('selected_students', []);
 
+        // Hapus siswa yang dipilih dari database
+        Siswa::whereIn('id_siswa', $selectedIds)->delete();
+
+        // Redirect kembali ke halaman daftar siswa dengan pesan sukses
+        return redirect('/siswa')->with('success', 'Siswa berhasil dihapus');
+    }
     public function siswaimportexcel(Request $request) {
+        
 
         // DB::table('tb_siswa')->Truncate();
+        // DB::table('tb_pelanggaran')->Truncate(); 
+        Siswa::query()->delete();
         // DB::table('tb_siswa')->where('nisn')->delete();
         $file=$request->file('file');
         $namafile = $file->getClientOriginalName();
@@ -100,6 +113,7 @@ class SiswaController extends Controller
         
         // Delete the record
         $siswa->delete();
+        Pelanggaran::where('id_siswa',$id)->delete();
         
         // Redirect to the index page with a success message
         return redirect()->route('siswa')->with('toast_success', 'Data Berhasil Dihapus');

@@ -39,7 +39,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="content">
                     <div class="intro-y flex items-center mt-8">
                         <h2 class="text-lg font-medium mr-auto">
-                            Tambah Guru
+                            Tambah Penanganan
                         </h2>
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">

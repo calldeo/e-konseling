@@ -53,7 +53,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="report-box zoom-in">
                                                 <div class="box p-5">
                                                     <div class="flex items-center">
-                                                        <i data-lucide="user" class="report-box__icon text-primary"></i> 
+                                                        <i data-lucide="message-square" class="report-box__icon text-primary"></i> 
                                                         <div class="ml-auto">
                                                             <div class="report-box__indicator bg-success tooltip cursor-pointer" title="Total Pelanggaran"> {{$siswaPelanggaran->sum('total_pelanggaran')}} </div>
                                                         </div>

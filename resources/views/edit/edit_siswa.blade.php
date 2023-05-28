@@ -98,7 +98,13 @@
                             </div>  
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" value="{{ $siswa->password }}"required>
+                               
+                                <div class="input-group">
+                                    <input type="password" name="password" class="form-control" value="{{ $siswa->password }}"required>
+                                    <button type="button" id="togglePassword" class="btn btn-outline-secondary">
+                                        <i id="passwordIcon" data-lucide="eye"></i>
+                                    </button>
+                                </div>
                             </div>
                             <input type="submit" name="submit" class="btn btn-info" value="Update">
                             
@@ -112,7 +118,20 @@
         
         @include('template.scricpt')
         @include('sweetalert::alert')
-
+        <script>
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+            const passwordIcon = document.querySelector('#passwordIcon');
+        
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+        
+                passwordIcon.classList.toggle('bi-eye');
+                passwordIcon.classList.toggle('bi-eye-slash');
+            });
+        </script>
+        
     </div> 
     <!-- END: JS Assets-->
     </html>

@@ -54,6 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <ul class="dropdown-content">
                                         <li>
                                             <a href="/tambah_plg" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Pelanggaran </a>
+                                            <a href="/exportplg" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Export to Excel </a>
                                         </li>
                                        
                                     </ul>

@@ -33,9 +33,9 @@ class Penanganan extends Authenticatable
         'id_kategori_penanganan',
         'id_siswa',
         'id',
-        'judul_penanganan',
+        'id_pelanggaran',
+        'point',
         'status',
-        'catatan_penanganan',
         'tindak_lanjut',
         
     ];
@@ -70,6 +70,10 @@ class Penanganan extends Authenticatable
     public function ketpelanggaran()
     {
         return $this->belongsTo(KetPelanggaran::class, 'id_kategori_pelanggaran');
+    }
+    public function pelanggaran()
+    {
+        return $this->belongsTo(Pelanggaran::class, 'id_pelanggaran');
     }
     
 }
