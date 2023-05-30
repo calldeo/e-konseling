@@ -39,19 +39,24 @@ route::post('/postlogin',[LoginController::class,'postlogin'])->name('postlogin'
 route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 
-
+Route::post('/siswa/update-selected', [SiswaController::class, 'updateSelected'])->name('siswa.updateSelected');
 route::post('/importguru',[GuruController::class,'guruimportexcel'])->name('guruimportexcel');
 route::post('/importsiswa',[SiswaController::class,'siswaimportexcel'])->name('siswaimportexcel');
 route::get('/exportplg',[PelanggaranController::class,'exportPelanggaran'])->name('exportPelanggaran');
 route::get('/exportphg',[PenghargaanController::class,'exportPenghargaan'])->name('exportPenghargaan');
+route::get('/exportpng',[PenangananController::class,'exportPenanganan'])->name('exportPenanganan');
+
 
 
 
 route::get('/pelanggaran',[PelanggaranController::class,'pelanggaran'])->name('pelanggaran');
 route::get('/penghargaan',[PenghargaanController::class,'penghargaan'])->name('penghargaan');
 route::get('/riwayat',[RiwayatController::class,'riwayat'])->name('riwayat');
-route::get('/penanganan',[PenangananController::class,'penanganan'])->name('penanganan');
 
+route::get('/penanganan',[PenangananController::class,'penanganan'])->name('penanganan');
+Route::delete('/penanganan/{id_penanganan}', [PenangananController::class,'destroy1'])->name('destroy1');
+Route::get('/penanganan/{id_penanganan}/edit_penanganan',[PenangananController::class,'editpng']);
+Route::put('/penanganan/{id_penanganan}',[PenangananController::class,'updatepng']);
 
 route::get('/ketpelanggaran',[pelanggaranController::class,'ketpelanggaran'])->name('ketpelanggaran');
 route::get('/ketpenghargaan',[PenghargaanController::class,'ketpenghargaan'])->name('ketpenghargaan');

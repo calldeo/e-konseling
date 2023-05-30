@@ -167,6 +167,7 @@ class PenghargaanController extends Controller
     public function destroy1($id_penghargaan) ///DELETE
     {
         $ket1 = Penghargaan::find($id_penghargaan);
+        Penghargaan::where('id_siswa',$id_pelanggaran)->delete();
         $ket1->delete();
         return redirect('/penghargaan')->with('toast_success', 'Data Berhasil Dihapus');;
     }

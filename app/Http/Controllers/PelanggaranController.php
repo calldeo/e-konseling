@@ -127,22 +127,95 @@ class PelanggaranController extends Controller
     public function storeplg(Request $request)
     {
         // Mendapatkan ID guru yang sedang login
-        $guruId = Auth::id();
-    
-        $data = $request->validate([
-            'id_kategori_pelanggaran' => 'required',
-            'id_siswa' => 'required',
-            'point' => 'required|numeric',
-            'catatan' => 'required',
-            'waktu' => 'required'
+    $guruId = Auth::id();
+
+    $data = $request->validate([
+        'id_kategori_pelanggaran' => 'required',
+        'id_siswa' => 'required',
+        'point' => 'required|numeric',
+        'catatan' => 'required',
+        'waktu' => 'required'
+    ]);
+
+    // Menambahkan ID guru ke dalam data pelanggaran
+    $data['id'] = $guruId;
+
+    Pelanggaran::create($data);
+
+    // Mengambil data siswa berdasarkan ID siswa
+    $siswa = Siswa::find($request->id_siswa);
+
+    // Mengambil total point pelanggaran siswa
+    $totalPoint = Pelanggaran::where('id_siswa', $request->id_siswa)->sum('point');
+
+    if ($totalPoint > 100) {
+        // Menambahkan data penanganan
+        DB::table('tb_penanganan')->insert([
+            'id_siswa' => $request->id_siswa,
+            // 'id_kategori_penanganan' => 1,
+            'id' => $guruId,
+            // 'id_pelanggaran' => 1,
+            'point' => $totalPoint,
+            'status'=>'Belum Ditangani',
+            
         ]);
+    }
+
+    return redirect('/pelanggaran')->with('toast_success', 'Data Berhasil Ditambahkan');
+        // // Mendapatkan ID guru yang sedang login
+        // $guruId = Auth::id();
+    
+        // $data = $request->validate([
+        //     'id_kategori_pelanggaran' => 'required',
+        //     'id_siswa' => 'required',
+        //     'point' => 'required|numeric',
+        //     'catatan' => 'required',
+        //     'waktu' => 'required'
+        // ]);
     
         // Menambahkan ID guru ke dalam data pelanggaran
-        $data['id'] = $guruId;
+        // $data['id'] = $guruId;
     
-        Pelanggaran::create($data);
+        // Pelanggaran::create($data);
+
+        // $checksiswa= Siswa::join('tb_pelanggaran', 'tb_siswa.id_siswa', '=', 'tb_pelanggaran.id_siswa')->select('tb_siswa.id_siswa','nama',DB::raw('SUM(point) as jumlah'))->where('tb_siswa.id_siswa')->groupBy('tb_siswa.id_siswa')->get(); 
+
+        // $checksiswa= DB::table('tb_penanganan')->select('id_siswa',DB::raw('SUM(point) as jumlah'))->groupBy('id_siswa')->get(); 
+
+        // DB::table('tb_penanganan')->insert([
+        //     'id_siswa' => 3567,
+        //     'id_kategori_penanganan' => 1,
+        //     'id' => 452,
+        //     'id_pelanggaran'=> 1,
+        //     'point' => 100,
+        //     'status' => 0,
+        //     'tindak_lanjut' => 'SP 1'
+        // ]);
+        // DB::table('tb_penanganan')->insert([
+        //     'id_siswa' => 3567,
+        //     'id_kategori_penanganan' => 1,
+        //     'id' => 452,
+        //     'id_pelanggaran'=> 1,
+        //     'point' => 100,
+        //     'status' => 0,
+        //     'tindak_lanjut' => 'SP 1'
+        // ]);
+        // foreach($checksiswa as $ck){
+           
+        //     if($ck->jumlah > 100){
+                // DB::table('tb_penanganan')->insert([
+                //     'id_siswa' => $ck->id_siswa,
+                //     'id_kategori_penanganan' => 1,
+                //     'id' => 452,
+                //     'id_pelanggaran'=> 1,
+                //     'point' => $ck->jumlah,
+                //     'status' => 0,
+                //     'tindak_lanjut' => 'SP 1'
+                // ]);
+            // }
+        // }
     
-        return redirect('/pelanggaran')->with('toast_success', 'Data Berhasil Ditambahkan');
+        
     }
     
     public function editplg($id_pelanggaran)  ///EDIT

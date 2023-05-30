@@ -63,6 +63,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </ul>
                                 </div>
                             </div>
+                            {{-- <button id="update-selected" class="btn btn-primary" type="button">Update Terpilih</button> --}}
                             <div class="hidden md:block mx-auto text-slate-500"></div>
                             <form action="" class="form-inline" method="GET">
                             <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -79,56 +80,46 @@ License: You must have a valid license purchased only from themeforest(the above
                             <table class="table table-report -mt-2">
                                 <thead>
                                     <tr>
-                                        {{-- <th class="text-center whitespace-nowrap">No</th> --}}
-                                        {{-- <th class="text-center whitespace-nowrap"><input type="checkbox"></th> --}}
-                                        {{-- <th class="text-center whitespace-nowrap"> </th> --}}
-
-                                        <th class="text-center whitespace-nowrap">NISN </th>
-                                        <th class="text-center whitespace-nowrap">Nama</th>
-                                        <th class="text-center whitespace-nowrap">Kelas</th>
-                                        <th class="text-center whitespace-nowrap">E-mail</th>
-                                        {{-- <th class="text-center whitespace-nowrap">Password</th> --}}
-
-                                        
-                                        {{-- <th class="text-center whitespace-nowrap">Password</th> --}}
-
-                                        <th class="text-center whitespace-nowrap">ACTIONS</th>
+                                      {{-- <th class="text-center">
+                                        <input type="checkbox" id="select-all-checkbox">
+                                      </th> --}}
+                                      <th class="text-center">NISN</th>
+                                      <th class="text-center">Nama</th>
+                                      <th class="text-center">Kelas</th>
+                                      <th class="text-center">Email</th>
+                                      <th class="text-center">Aksi</th>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                 @foreach($data as $ss)
-                                        {{-- <td  class="text-center">{{$ss->id_siswa}}</td> --}}
-                                        {{-- <td><input type="checkbox"></td> --}}
-                                        {{-- <td class="text-center">
-                                            <input type="checkbox" name="selected_students[]" value="{{$ss->id_siswa}}">
-                                          </td> --}}
-                                        <td  class="text-center">{{$ss->nisn}}</td>
-                                        <td class="text-center">{{$ss->nama}}</td>
-                                        <td class="text-center">{{$ss->kelas}}</td>
-                                        <td class="text-center">{{$ss->email}}</td>
-                                        {{-- <td class="text-center">{{$g->password}}</td> --}}
-
-                                        <td class="table-report__action w-40">
-                                            <div class="flex justify-center items-center">
-                                                <a class="btn btn-primary" href="/siswa/{{ $ss->id_siswa }}/edit_siswa">
-                                                    <i data-lucide="edit" class="w-4 h-4 mr-1"></i>
-                                                </a>
-                                        
-                                                <form action="{{ route('siswa.destroy', $ss->id_siswa) }}" method="POST" class="delete-form">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete-confirmation-modal-{{ $ss->id_siswa }}">
-                                                        <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
-                                                    </button>
-                                                </form>
-                                                
-                                            </div>
-                                        </td>
+                                  </thead>
+                                  <tbody>
+                                    @foreach($data as $ss)
+                                    <tr>
+                                      {{-- <td class="text-center">
+                                        <input type="checkbox" name="selected[]" value="{{ $ss->id_siswa }}" class="record-checkbox">
+                                      </td> --}}
+                                      <td class="text-center">{{$ss->nisn}}</td>
+                                      <td class="text-center">{{$ss->nama}}</td>
+                                      <td class="text-center">{{$ss->kelas}}</td>
+                                      <td class="text-center">{{$ss->email}}</td>
+                                      <td class="table-report__action w-40">
+                                        <div class="flex justify-center items-center">
+                                          <!-- Tombol Edit -->
+                                          <a class="btn btn-primary" href="/siswa/{{ $ss->id_siswa }}/edit_siswa">
+                                            <i data-lucide="edit" class="w-4 h-4 mr-1"></i>
+                                          </a>
+                                          <!-- Tombol Hapus -->
+                                          <form action="{{ route('siswa.destroy', $ss->id_siswa) }}" method="POST" class="delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete-confirmation-modal-{{ $ss->id_siswa }}">
+                                              <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
+                                            </button>
+                                          </form>
+                                        </div>
+                                      </td>
                                     </tr>
-                                 @endforeach
-
-                                
-                                </tbody>
+                                    @endforeach
+                                  </tbody>
+                                  
                                 
                             </table>
                         <div class="my-5 ">
@@ -220,6 +211,60 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END: Content -->
             </div>
         </div>
+
+       
+
+        {{-- <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Checkbox untuk memilih semua baris
+                var selectAllCheckbox = document.getElementById('select-all');
+                var checkboxes = document.querySelectorAll('input[name="selected[]"]');
+        
+                selectAllCheckbox.addEventListener('change', function() {
+                    checkboxes.forEach(function(checkbox) {
+                        checkbox.checked = selectAllCheckbox.checked;
+                    });
+                });
+        
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.addEventListener('change', function() {
+                        var allChecked = true;
+        
+                        checkboxes.forEach(function(cb) {
+                            if (!cb.checked) {
+                                allChecked = false;
+                            }
+                        });
+        
+                        selectAllCheckbox.checked = allChecked;
+                    });
+                });
+        
+                // Tombol Hapus Terpilih
+                var deleteSelectedButton = document.getElementById('delete-selected');
+        
+                deleteSelectedButton.addEventListener('click', function() {
+                    var checkedIds = [];
+                    checkboxes.forEach(function(checkbox) {
+                        if (checkbox.checked) {
+                            checkedIds.push(checkbox.value);
+                        }
+                    });
+        
+                    if (checkedIds.length > 0) {
+                        var result = confirm('Are you sure you want to delete the selected records?');
+                        if (result) {
+                            var deleteForm = document.getElementById('delete-selected-form');
+                            deleteForm.elements['selected_ids'].value = checkedIds.join(',');
+                            deleteForm.submit();
+                        }
+                    } else {
+                        alert('Please select at least one record to delete.');
+                    }
+                });
+            });
+        </script>
+         --}}
         <!-- BEGIN: Dark Mode Switcher-->
         
         <!-- END: Dark Mode Switcher-->
@@ -243,6 +288,51 @@ License: You must have a valid license purchased only from themeforest(the above
                     });
                 });
             });
+
+
+            document.addEventListener('DOMContentLoaded', function() {
+    // Tombol Update Terpilih
+    var updateSelectedButton = document.getElementById('update-selected');
+    var checkboxes = document.querySelectorAll('.record-checkbox');
+
+    updateSelectedButton.addEventListener('click', function() {
+        var checkedIds = [];
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedIds.push(checkbox.value);
+            }
+        });
+
+        if (checkedIds.length > 0) {
+            var updateUrl = '/siswa/update-selected';
+            var newKelas = prompt('Masukkan kelas baru:');
+            if (newKelas !== null) {
+                var formData = new FormData();
+                formData.append('selected', checkedIds.join(','));
+                formData.append('kelas', newKelas);
+
+                fetch(updateUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        alert('Update berhasil');
+                        location.reload();
+                    } else {
+                        alert('Terjadi kesalahan saat melakukan update');
+                    }
+                })
+                .catch(function(error) {
+                    alert('Terjadi kesalahan saat melakukan update');
+                    console.error(error);
+                });
+            }
+        } else {
+            alert('Pilih setidaknya satu data untuk diupdate.');
+        }
+    });
+});
         </script>
         
         <!-- END: JS Assets-->

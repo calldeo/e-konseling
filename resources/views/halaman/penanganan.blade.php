@@ -53,38 +53,34 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="dropdown-menu w-40">
                                     <ul class="dropdown-content">
                                         <li>
-                                            <a href="/tambah_penanganan" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Tambah Penanganan </a>
+                                            
+                                            <a href="/exportpng" class="dropdown-item"> <i data-lucide="printer" class="w-4 h-4 mr-2"></i> Export to Excel </a>
                                         </li>
-                                        <li>
-                                            <a href="" class="dropdown-item"> <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Export to Excel </a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </div>
                             <div class="hidden md:block mx-auto text-slate-500"></div>
                             <form action="" class="form-inline" method="GET">
-                                <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                                    
-                                    <div class="w-56 relative text-slate-500">
-                                        <input type="search" name="keyword" class="form-control w-56 box pr-10" placeholder="Search...">
-                                        <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
-                                    </div>
+                            <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                                
+                                <div class="w-56 relative text-slate-500">
+                                    <input type="search" name="search" class="form-control w-56 box pr-10" placeholder="Search...">
+                                    <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
                                 </div>
-                            </form>
+                            </div>
+                        </form>
                         </div>
                         <!-- BEGIN: Data List -->
                         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
                             <table class="table table-report -mt-2">
                                 <thead>
                                     <tr>
-                                        {{-- <th class="text-center whitespace-nowrap">No</th> --}}
                                         <th class="text-center whitespace-nowrap">Nama Siswa</th>
-                                        <th class="text-center whitespace-nowrap">Nama Penanganan</th>
                                         <th class="text-center whitespace-nowrap">Nama Guru</th>
-                                        <th class="text-center whitespace-nowrap">Nama Pelanggaran</th>
                                         <th class="text-center whitespace-nowrap">Point</th>
-                                        <th class="text-center whitespace-nowrap">Status</th>    
-                                        <th class="text-center whitespace-nowrap">Tindak Lanjut</th>
+                                        <th class="text-center whitespace-nowrap">Status</th>  
+                                        <th class="text-center whitespace-nowrap">Tindak Lanjut</th>                                       
 
                                         
                                         {{-- <th class="text-center whitespace-nowrap">Username</th> --}}
@@ -95,27 +91,26 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </thead>
                                 <tbody>
                                     @foreach($data as $da)
-                                    <td  class="text-center">{{$da->id_penghargaan}}</td>
+                                    
                                     <td class="text-center">{{$da->siswa?->nama}}</td>
-                                    <td  class="text-center">{{$da->ketpenghargaan->kategori_penghargaan}}</td>
                                     <td class="text-center">{{$da->user?->name}}</td>
-                                    <td class="text-center">{{$da->id_kategori_pelanggaran}}</td>
-                                    <td class="text-center">{{$da->catatan_penanganan}}</td>
+                                    <td class="text-center">{{$da->point}}</td>
                                     <td class="text-center">{{$da->status}}</td>
                                     <td class="text-center">{{$da->tindak_lanjut}}</td>
+
                                     
                                     {{-- <td class="text-center">{{$g->password}}</td> --}}
 
                                     <td class="table-report__action w-40">
                                         <div class="flex justify-center items-center">
-                                            <a class="btn btn-primary" href="/penanganan/{{ $kp->id_penghargaan }}/edit_penghargaan" >
+                                            <a class="btn btn-primary" href="/penanganan/{{ $da->id_penanganan }}/edit_penanganan" >
                                                 <i data-lucide="edit" class="w-4 h-4 mr-1"></i>
                                             </a>
                                             
-                                            <form action="{{ route('.destroy', $kp->id_kategori_pelanggaran) }}" method="POST" class="delete-form">
+                                            <form action="{{ route('destroy1', $da->id_penanganan) }}" method="POST" class="delete-form">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete-confirmation-modal-{{ $kp->id_kategori_pelanggaran}}">
+                                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#delete-confirmation-modal-{{ $da->id_penanganan }}">
                                                     <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i>
                                                 </button>
                                             </form>
@@ -125,7 +120,7 @@ License: You must have a valid license purchased only from themeforest(the above
                              @endforeach
                             </tbody>
                                  
-                           
+                            
                             </table>
                             <div class="my-5 ">
                                 {{$data ->links() }}
@@ -137,8 +132,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!-- END: Pagination -->
                     </div>
                     <!-- BEGIN: Delete Confirmation Modal --> 
-                    @foreach($data as $ket1)
-                    <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
+                    {{-- @foreach($data as $ket1) --}}
+                    {{-- <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body p-0">
@@ -152,7 +147,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                     <div class="px-5 pb-8 text-center">
-                                        <form action="/penghargaan/{{ $ket1->id_penghargaan }}" method="POST">
+                                        <form action="/pelanggaran/{{ $da->id_pelanggaran }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
@@ -163,8 +158,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    </div> --}}
+                {{-- @endforeach --}}
                     <!-- END: Delete Confirmation Modal -->
                 </div>
                 <!-- END: Content -->
@@ -179,7 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: JS Assets-->
         @include('template.scricpt')
         @include('sweetalert::alert')
-        <script>
+          <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var deleteForms = document.querySelectorAll('.delete-form');
                 var confirmationModal = document.getElementById('delete-confirmation-modal');

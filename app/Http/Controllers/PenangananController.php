@@ -2,24 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PenangananExport;
 use App\Models\Guru;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\ketpenanganan;
 use App\Models\Pelanggaran;
 use App\Models\Penanganan;
+use App\Models\Penghargaan;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenangananController extends Controller
 {
+    
+    public function exportPenanganan()
+{
+    // return Pelanggaran::with('siswa','ketpelanggaran','user')->get();
+    return Excel::download(new PenangananExport(), 'penanganan.xlsx');
+}
     public function penanganan(Request $request)
     {
-        $keyword=$request->keyword;
-        $data = Penanganan::where('id_kategori_penanganan','LIKE','%'.$request->search.'%')->Paginate(5);
+        $search = $request->search;
+        $data = Penanganan::whereHas('siswa', function ($query) use ($search) {
+            $query->where('nama', 'LIKE', '%' . $search . '%');
+        })->paginate(10);
         return view('halaman.penanganan', compact('data'));
+        // dd($data);
     }
 
     public function ketpenanganan(){
@@ -80,58 +92,98 @@ class PenangananController extends Controller
 
     public function tambahpng()
     {
-       // Mendapatkan ID guru yang sedang login
-       $guruId = Auth::id();
+        // Mendapatkan ID guru yang sedang login
+        $guruId = Auth::id();
     
-       // Mendapatkan informasi guru berdasarkan ID
-       $guru = Guru::find($guruId);
-   
-       // Mendapatkan data siswa
-       
-   
-       // Mendapatkan data pelanggaran
-       $pelanggaran =Pelanggaran::all();
-     
-        // $penanganan = DB::table('tb_kategori_penanganan')->get();
-
-        // return view('tambah.tambah_png', compact('siswa', 'pelanggaran', 'guru'));
-        return view('tambah.tambah_png', compact('pelanggaran'));
+        // Mendapatkan informasi guru berdasarkan ID
+        $guru = Guru::find($guruId);
+    
+        $pelanggaran = Pelanggaran::with('siswa')->get();
+        
+        $siswa = Siswa::all();
+    
+        // Menampilkan view tambah penanganan dengan data siswa, pelanggaran, dan guru
+        return view('tambah.tambah_png', compact('guru', 'pelanggaran', 'siswa'));
     }
     
     public function storepng(Request $request)
     {
         $guruId = Auth::id();
-        $data->validate([
-            'id_pelanggaran' => 'required',
-            'id_siswa' => 'required',
+        
+        $request->validate([
             'id_kategori_pelanggaran' => 'required',
+            'id_siswa' => 'required',
             'status' => 'required',
             'tindak_lanjut' => 'required',
             'point' => 'required',
-            'id_kategori_penanganan' => 'required',
         ]);
-        $data['id'] = $guruId;
-        Penanganan::create($data);
-        // foreach ($pelanggaran as $pelanggaran) {
-        //     $penanganan = new Penanganan();
-        //     $penanganan->id_pelanggaran = $pelanggaran->id_pelanggaran;
-        //     $penanganan->id_siswa = $pelanggaran->id_siswa;
-        //     $penanganan->id_kategori_pelanggaran = $pelanggaran->id_kategori_pelanggaran;
-        //     $penanganan->point = $pelanggaran->point;
-        //     $penanganan->status = $pelanggaran->status;
-        //     $penanganan->tindak_lanjut = $pelanggaran->tindak_lanjut;
-        //     $penanganan->id_kategori_penanganan = $pelanggaran->id_kategori_penanganan;
     
-            // Set field lain yang diperlukan untuk model Penanganan
-            // Contoh: $penanganan->siswa_id = $pelanggaran->siswa_id;
-            //          $penanganan->keterangan = 'Penanganan default';
-    
-       
+        $penanganan = new Penanganan();
+        $penanganan->id_kategori_pelanggaran = $request->id_kategori_pelanggaran;
+        $penanganan->id_siswa = $request->id_siswa;
+        $penanganan->status = $request->status;
+        $penanganan->tindak_lanjut = $request->tindak_lanjut;
+        $penanganan->point = $request->point;
         
+        // Set field lain yang diperlukan untuk model Penanganan
+        $penanganan->id_guru = $guruId;
+        // Contoh: $penanganan->siswa_id = $request->siswa_id;
+        //        $penanganan->keterangan = 'Penanganan default';
+    
+        $penanganan->save();
     
         return redirect()->back()->with('success', 'Data penanganan berhasil ditambahkan!');
     }
+
+    public function destroy1($id)
+    {
+        // Find the record
+        $siswa = Penanganan::findOrFail($id);
+        
+        // Delete the record
+        $siswa->delete();
+        Penanganan::where('id_siswa',$id)->delete();
+        
+        // Redirect to the index page with a success message
+        return redirect()->route('penanganan')->with('toast_success', 'Data Berhasil Dihapus');
+    }
+
+    public function editpng($id_penanganan)  ///EDIT
+    {
+      // Mendapatkan ID guru yang sedang login
+      $guruId = Auth::id();
     
+      // Mendapatkan informasi guru berdasarkan ID
+      $guru = Guru::find($guruId);
+  
+      // Mendapatkan data siswa
+      $siswa = Siswa::all();
+        
+
+      $penanganan=Penanganan::where('id_penanganan',$id_penanganan)->first();
+      // Mendapatkan data pelanggaran
+      $pelanggaran = DB::table('tb_pelanggaran')->get();
+        return view('edit.edit_penanganan', compact('id_penanganan','siswa', 'pelanggaran', 'guru','penanganan'));
+        // $pelanggaran = KetPelanggaran::find($id_pelanggaran);
+        // return view('edit.edit_pelanggaran', compact(['pelanggaran']));
+    }
+
+    public function updatepng(Request $request, $id_penanganan)
+    {
+        $guruId = Auth::id();
+        $data = $request->validate([
+            // 'id_siswa' => 'required',
+            'point'=>'required',
+            'status' => 'required',
+            'tindak_lanjut' => 'required',
+            
+            
+        ]);
+        $data['id'] = $guruId;
+        $penghargaan = Penanganan::where('id_penanganan', $id_penanganan)->first();
+        $penghargaan->update($data);
+        return redirect('/penanganan')->with('toast_success', 'Data Berhasil Diupdate');
+    }
 
 
 }

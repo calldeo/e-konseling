@@ -39,6 +39,7 @@ class Siswa extends Authenticatable
         'email',
         'password',
         
+        
 
         // 'api_token',
 

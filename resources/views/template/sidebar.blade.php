@@ -138,12 +138,12 @@
                         <div class="side-menu__title"> Penanganan </div>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="/ketpenanganan" class="side-menu">
                         <div class="side-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="side-menu__title"> Kategori Penanganan </div>
                     </a>
-                </li>
+                </li> --}}
                
             </ul>
         </li>

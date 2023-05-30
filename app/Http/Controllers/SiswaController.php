@@ -6,6 +6,7 @@ use App\API\ApiFormatter;
 use App\Imports\UserImport;
 use App\Imports\SiswaImport;
 use App\Models\Pelanggaran;
+use App\Models\Penghargaan;
 use DB;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
@@ -19,6 +20,16 @@ use PhpParser\Node\Expr;
 
 class SiswaController extends Controller
 {
+    public function updateSelected(Request $request)
+    {
+        $selectedIds = explode(',', $request->input('selected'));
+        $newKelas = $request->input('kelas');
+    
+        // Update the selected records with the new kelas
+        Siswa::where('id_siswa', $selectedIds)->update(['kelas' => $newKelas]);
+    
+        return redirect()->back()->with('success', 'Selected records updated successfully');
+    }
     public function deleteSelected(Request $request)
     {
         // Ambil id siswa yang dipilih dari input form
@@ -30,12 +41,13 @@ class SiswaController extends Controller
         // Redirect kembali ke halaman daftar siswa dengan pesan sukses
         return redirect('/siswa')->with('success', 'Siswa berhasil dihapus');
     }
-    public function siswaimportexcel(Request $request) {
+    public function siswaimportexcel(Request $request ) {
         
 
         // DB::table('tb_siswa')->Truncate();
         // DB::table('tb_pelanggaran')->Truncate(); 
         Siswa::query()->delete();
+        
         // DB::table('tb_siswa')->where('nisn')->delete();
         $file=$request->file('file');
         $namafile = $file->getClientOriginalName();
@@ -114,6 +126,7 @@ class SiswaController extends Controller
         // Delete the record
         $siswa->delete();
         Pelanggaran::where('id_siswa',$id)->delete();
+        Penghargaan::where('id_siswa',$id)->delete();
         
         // Redirect to the index page with a success message
         return redirect()->route('siswa')->with('toast_success', 'Data Berhasil Dihapus');
@@ -234,6 +247,7 @@ class SiswaController extends Controller
              ]);
          }
      }
-    }
+    
+}
 
         
