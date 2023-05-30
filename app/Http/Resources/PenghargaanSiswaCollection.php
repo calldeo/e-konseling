@@ -15,13 +15,11 @@ class PenghargaanSiswaCollection extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_penghargaan' => $this->id_penghargaan,
-            'waktu'=>$this->waktu,
-            'kategori_penghargaan' => $this->ketpenghargaan->kategori_penghargaan,
             'id_siswa' => $this->siswa->id_siswa,
-            'point' => $this->point,
-            'catatan' => $this->catatan,
-            
+            'nama' => $this->siswa->nama,
+            'waktu' => $this->created_at,
+            'kategori_penghargaan' => $this->ketpenghargaan->kategori_penghargaan,
+            'kelas' => $this->siswa->kelas
         ];
     }
 }

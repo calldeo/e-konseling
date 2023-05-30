@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PelanggaranSiswaCollection extends JsonResource
@@ -23,5 +24,8 @@ class PelanggaranSiswaCollection extends JsonResource
             'catatan' => $this->catatan,
             
         ];
+    }
+    public function formattedCreatedAt(){
+        return Carbon::parse($this->created_at)->format('Y-m-d H:i:s');
     }
 }
