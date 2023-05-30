@@ -17,15 +17,16 @@ class PelanggaranSiswaCollection extends JsonResource
     {
         return [
             'id_pelanggaran' => $this->id_pelanggaran,
-            'waktu'=>$this->waktu,
+            'waktu' => $this->formattedCreatedAt(),
             'kategori_pelanggaran' => $this->ketpelanggaran->kategori_pelanggaran,
             'id_siswa' => $this->siswa->id_siswa,
             'point' => $this->point,
             'catatan' => $this->catatan,
-            
+
         ];
     }
-    public function formattedCreatedAt(){
+    public function formattedCreatedAt()
+    {
         return Carbon::parse($this->created_at)->format('Y-m-d H:i:s');
     }
 }
