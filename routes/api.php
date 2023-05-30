@@ -1,6 +1,8 @@
 <?php
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PelanggaranController;
+use App\Http\Controllers\PenangananController;
 use App\Http\Controllers\PenghargaanController;
 use App\Http\Controllers\SiswaController;
 use App\Models\Pelanggaran;
@@ -22,21 +24,21 @@ use Illuminate\Support\Str;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();  
-
+    return $request->user();
 });
-route::get('siswa',[SiswaController::class,'SiswaAPI']);
-route::post('siswa/update',[SiswaController::class,'updateAPI']);
+route::get('siswa', [SiswaController::class, 'SiswaAPI']);
+route::post('siswa/update', [SiswaController::class, 'updateAPI']);
 
-route::get('pelanggaran/show',[PelanggaranController::class,'show']);
-route::get('penghargaan/show',[PenghargaanController::class,'show']);
+route::get('pelanggaran/show', [PelanggaranController::class, 'show']);
+route::get('penghargaan/show', [PenghargaanController::class, 'show']);
+route::get('penanganan/show', [PenangananController::class, 'show']);
 
 
 
-route::post('siswa',function(Request $request){
+route::post('siswa', function (Request $request) {
     $valid = Auth::attempt($request->all());
 
-    if($valid){
+    if ($valid) {
         $siswa = Auth::Siswa();
         $siswa->api_token = Str::random(100);
         $siswa->save();
@@ -46,12 +48,11 @@ route::post('siswa',function(Request $request){
         return $siswa;
     }
     return response()->json([
-        'message'=> 'email & password doesn\'t match'
-    ],404);
-
+        'message' => 'email & password doesn\'t match'
+    ], 404);
 });
-route::get('siswa',[SiswaController::class,'SiswaAPI']);
-route::post('login',[SiswaController::class,'loginapi']);
+route::get('siswa', [SiswaController::class, 'SiswaAPI']);
+route::post('login', [SiswaController::class, 'loginapi']);
 
 // route::post('siswa',function(Request $request){
 //     $valid = Auth::attempt($request->all());
